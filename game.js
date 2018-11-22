@@ -11,8 +11,21 @@ function buildBoardHTML() {
     return boardHTML;
 }
 
+function buildCellHTML() {
+    let cellHTML = '<input type="text" maxlength="1">';
+    return cellHTML;
+}
+
 document.querySelector('#sudokuBoard').innerHTML = buildBoardHTML();
 const cells = [...document.querySelectorAll('#sudokuBoard td')];
+
+cells.forEach((cell, index) => {
+    cell.id = 'c' + index;
+    cell.innerHTML = buildCellHTML();
+})
+
+const inputs = [...document.querySelectorAll('#sudokuBoard td input')];
+
 
 // *****************************************************
 // Temporary rendering code
@@ -21,7 +34,7 @@ __board = __board.split('').map(num => {
     return num === '.' ? '' : num;
 });
 
-cells.forEach((cell, index) => {
-    cell.textContent = __board[index];
+inputs.forEach((input, index) => {
+    input.value = __board[index];
 });
 // *****************************************************
