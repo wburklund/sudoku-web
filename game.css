@@ -26,8 +26,5 @@ tr td:nth-of-type(6) {
     margin: auto;
     text-align: center;
     font-size: 2.5rem;
-}
-
-#sudokuBoard input:focus {
     outline-width: 0;
 }
