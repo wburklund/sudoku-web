@@ -8,3 +8,19 @@ td {
     width: 50px;
     height: 50px;
 }
+
+tr:nth-of-type(3) td {
+    border-bottom: 2px solid black;
+}
+
+tr:nth-of-type(6) td {
+    border-bottom: 2px solid black;
+}
+
+tr td:nth-of-type(3) {
+    border-right: 2px solid black;
+}
+
+tr td:nth-of-type(6) {
+    border-right: 2px solid black;
+}
