@@ -12,3 +12,16 @@ function buildBoardHTML() {
 }
 
 document.querySelector('#sudokuBoard').innerHTML = buildBoardHTML();
+const cells = [...document.querySelectorAll('#sudokuBoard td')];
+
+// *****************************************************
+// Temporary rendering code
+let __board = sudoku.generate("medium");
+__board = __board.split('').map(num => {
+    return num === '.' ? '' : num;
+});
+
+cells.forEach((cell, index) => {
+    cell.textContent = __board[index];
+});
+// *****************************************************
