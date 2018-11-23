@@ -36,3 +36,7 @@ tr td:nth-of-type(6) {
     font-size: 2.5rem;
     outline-width: 0;
 }
+
+.cell-input.conflict {
+    color: red;
+}
