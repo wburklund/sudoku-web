@@ -29,8 +29,9 @@ function setupControlListeners() {
         sudokuStore.dispatch({ type: 'SAVE_GAME' });
     });
     document.getElementById('loadButton').addEventListener('click', () => {
-        window.confirm('Load saved game? This will end your current game.');
-        sudokuStore.dispatch({ type: 'LOAD_GAME' });
+        if (window.confirm('Load saved game? This will end your current game.')) {
+            sudokuStore.dispatch({ type: 'LOAD_GAME' });
+        }
     });
 }
 
