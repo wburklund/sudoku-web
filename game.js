@@ -35,8 +35,7 @@ function buildCellHTML() {
 
 // *****************************************************
 // Temporary rendering code
-let __board = sudoku.generate("medium");
-__board = __board.split('').map(num => num === '.' ? '' : num);
+let __board = sudokuStore.getState();
 
 inputs.forEach((input, index) => {
     input.value = __board[index];
