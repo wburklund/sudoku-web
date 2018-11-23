@@ -16,7 +16,7 @@ function init() {
         cell.classList.add("cell");
         cell.innerHTML = buildCellHTML();
         // add listener to child input
-        cell.childNodes[0].addEventListener('change', onCellInput);
+        cell.childNodes[0].addEventListener('input', onCellInput);
     });
 }
 
