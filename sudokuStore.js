@@ -6,7 +6,7 @@ function sudokuUpdate(oldState = _newGame("medium"), action) {
             if (!sudoku.DIGITS.includes(action.value)) {
                 return state;
             }
-            state[action.index].value = action.value;
+            state.board[action.index].value = action.value;
             break;
         case 'DIFFICULTY_CHANGE':
             state = _newGame(action.value);
@@ -16,7 +16,9 @@ function sudokuUpdate(oldState = _newGame("medium"), action) {
 }
 
 function _newGame(difficulty) {
-    return sudoku.generate(difficulty)
+    let state = {};
+    state.difficulty = difficulty;
+    state.board = sudoku.generate(difficulty)
         .split('')
         .map(n => {
             return {
@@ -24,6 +26,7 @@ function _newGame(difficulty) {
                 value: (n === '.' ? '' : n),
             }
         });
+    return state;
 }
 
   let sudokuStore = Redux.createStore(sudokuUpdate);

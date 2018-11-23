@@ -2,6 +2,7 @@ init();
 
 const cells = [...document.getElementsByClassName('cell')];
 const inputs = [...document.getElementsByClassName('cell-input')];
+const difficultySelect = document.getElementById('difficultySelect');
 
 render();
 sudokuStore.subscribe(render);
@@ -31,6 +32,8 @@ function onCellInput() {
 function onDifficultyChange() {
     if (window.confirm('Start new game?')) {
         sudokuStore.dispatch({ type: 'DIFFICULTY_CHANGE', value: this.value});
+    } else {
+        this.value = sudokuStore.getState().difficulty;
     }
 }
 
@@ -53,9 +56,12 @@ function buildCellHTML() {
 }
 
 function render() {
-    const board = sudokuStore.getState();
+    const state = sudokuStore.getState();
+    const board = state.board;
 
     inputs.forEach((input, i) => {
         input.value = board[i].value;
     });
+
+    difficultySelect.value = state.difficulty;
 }
