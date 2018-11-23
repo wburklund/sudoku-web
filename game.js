@@ -1,7 +1,7 @@
 init();
 
-const cells = [...document.querySelectorAll('#sudokuBoard td')];
-const inputs = [...document.querySelectorAll('#sudokuBoard td input')];
+const cells = [...document.querySelectorAll('.cell')];
+const inputs = [...document.querySelectorAll('.cell-input')];
 
 function init() {
     // Create the 'sudokuBoard' table
@@ -10,6 +10,7 @@ function init() {
     // Setup each cell
     [...document.querySelectorAll('#sudokuBoard td')].forEach((cell, index) => {
         cell.id = 'c' + index;
+        cell.classList.add("cell");
         cell.innerHTML = buildCellHTML();
     });
 }
@@ -28,7 +29,7 @@ function buildBoardHTML() {
 }
 
 function buildCellHTML() {
-    let cellHTML = '<input type="text" maxlength="1">';
+    let cellHTML = '<input type="text" class="cell-input" maxlength="1">';
     return cellHTML;
 }
 
