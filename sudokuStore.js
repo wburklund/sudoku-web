@@ -1,8 +1,6 @@
 function sudokuUpdate(oldState, action) {
     if (oldState === undefined) {
-        return sudoku.generate('medium')
-            .split('')
-            .map(n => n === '.' ? '' : n);
+        return _newGame('medium');
     }
     
     let state = JSON.parse(JSON.stringify(oldState));
@@ -12,10 +10,21 @@ function sudokuUpdate(oldState, action) {
             if (!sudoku.DIGITS.includes(action.value)) {
                 return state;
             }
-            state[action.index] = action.value;
+            state[action.index].value = action.value;
         default:
             return state;
     }
-  }
+}
+
+function _newGame(difficulty) {
+    return sudoku.generate(difficulty)
+        .split('')
+        .map(n => {
+            return {
+                type: (n === '.' ? 'normal' : 'given'),
+                value: (n === '.' ? '' : n),
+            }
+        });
+}
 
   let sudokuStore = Redux.createStore(sudokuUpdate);

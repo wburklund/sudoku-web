@@ -48,6 +48,6 @@ function render() {
     const board = sudokuStore.getState();
 
     inputs.forEach((input, i) => {
-        input.value = board[i];
+        input.value = board[i].value;
     });
 }
