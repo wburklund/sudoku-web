@@ -1,8 +1,4 @@
-function sudokuUpdate(oldState, action) {
-    if (oldState === undefined) {
-        return _newGame('medium');
-    }
-    
+function sudokuUpdate(oldState = _newGame("medium"), action) {
     let state = JSON.parse(JSON.stringify(oldState));
     
     switch (action.type) {
@@ -11,9 +7,9 @@ function sudokuUpdate(oldState, action) {
                 return state;
             }
             state[action.index].value = action.value;
-        default:
-            return state;
+            break;
     }
+    return state;
 }
 
 function _newGame(difficulty) {
