@@ -5,8 +5,10 @@ function sudokuUpdate(state, action) {
             .map(n => n === '.' ? '' : n);
     }
     switch (action.type) {
-      default:
-        return state;
+        case 'CELL_INPUT':
+            state[action.index] = action.value;
+        default:
+            return state;
     }
   }
 

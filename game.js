@@ -12,7 +12,15 @@ function init() {
         cell.id = 'c' + index;
         cell.classList.add("cell");
         cell.innerHTML = buildCellHTML();
+        // add listener to child input
+        cell.childNodes[0].addEventListener('change', onCellInput);
     });
+}
+
+function onCellInput() {
+    // index comes from parent cell id in the form 'c#'
+    const index = Number(this.parentNode.id.slice(1));
+    sudokuStore.dispatch({ type: 'CELL_INPUT', index: index, value: this.value});
 }
 
 function buildBoardHTML() {
