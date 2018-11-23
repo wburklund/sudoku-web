@@ -20,7 +20,18 @@ function init() {
         cell.childNodes[0].addEventListener('input', onCellInput);
     });
 
-    document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);    
+    document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
+    setupControlListeners();
+}
+
+function setupControlListeners() {
+    document.getElementById('saveButton').addEventListener('click', () => {
+        sudokuStore.dispatch({ type: 'SAVE_GAME' });
+    });
+    document.getElementById('loadButton').addEventListener('click', () => {
+        window.confirm('Load saved game? This will end your current game.');
+        sudokuStore.dispatch({ type: 'LOAD_GAME' });
+    });
 }
 
 function onCellInput() {

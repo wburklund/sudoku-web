@@ -2,6 +2,16 @@ function sudokuUpdate(oldState = _newGame("medium"), action) {
     let state = JSON.parse(JSON.stringify(oldState));
     
     switch (action.type) {
+        case 'SAVE_GAME':
+            localStorage.setItem('sudoku_saved_game', JSON.stringify(state));
+            return state;
+        case 'LOAD_GAME':
+            const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
+            if (!savedState) {
+                return state;
+            }
+            state = savedState;
+            break;
         case 'CELL_INPUT':
             if (!sudoku.DIGITS.includes(action.value)) {
                 return state;
