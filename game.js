@@ -30,7 +30,7 @@ function setupControlListeners() {
     });
     document.getElementById('loadButton').addEventListener('click', () => {
         if (window.confirm('Load saved game? This will end your current game.')) {
-            store.dispatch({ type: 'LOAD_GAME' });
+            cellOpacityTransition(() => store.dispatch({ type: 'LOAD_GAME' }));
         }
     });
 }
@@ -43,7 +43,7 @@ function onCellInput() {
 
 function onDifficultyChange() {
     if (window.confirm('Start new game?')) {
-        store.dispatch({ type: 'DIFFICULTY_CHANGE', value: this.value});
+        cellOpacityTransition(() => store.dispatch({ type: 'DIFFICULTY_CHANGE', value: this.value}));
     } else {
         this.value = store.getState().difficulty;
     }
@@ -78,4 +78,16 @@ function render() {
     });
 
     difficultySelect.value = state.difficulty;
+}
+
+const cellOpacityTransition = (func) => {
+    inputs.forEach(input => {
+        input.classList.add('invisible');
+    })
+    setTimeout(() => {
+        func();
+        inputs.forEach(input => {
+            input.classList.remove('invisible');
+        })
+    }, 350);
 }

@@ -37,8 +37,13 @@ tr td:nth-of-type(6) {
     text-align: center;
     font-size: 2.5rem;
     outline-width: 0;
+    transition: color 0.25s, opacity 0.35s;
 }
 
 .cell-input.conflict {
     color: red;
+}
+
+.cell-input.invisible {
+    opacity: 0;
 }
