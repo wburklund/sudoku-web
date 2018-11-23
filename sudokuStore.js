@@ -6,6 +6,9 @@ function sudokuUpdate(state, action) {
     }
     switch (action.type) {
         case 'CELL_INPUT':
+            if (!sudoku.DIGITS.includes(action.value)) {
+                return state;
+            }
             state[action.index] = action.value;
         default:
             return state;
