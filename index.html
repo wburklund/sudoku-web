@@ -7,7 +7,13 @@
 </head>
 
 <body>
-	<h1>Sudoku
+	<h1>Sudoku</h1>
+
+	<div id="controls">
+		<button id="saveButton">Save</button>
+		<button id="loadButton">Load</button>
+		
+		<label for="difficultySelect">Difficulty:</label>
 		<select name="difficulty" id="difficultySelect">
 			<option value="easy">&#9733</option>
 			<option value="medium" selected>&#9733&#9733</option>
@@ -15,11 +21,6 @@
 			<option value="very-hard">&#9733&#9733&#9733&#9733</option>
 			<option value="insane">&#9733&#9733&#9733&#9733&#9733</option>
 		</select>
-	</h1>
-
-	<div id="controls">
-		<button id="saveButton">Save</button>
-		<button id="loadButton">Load</button>
 	</div>
 
 	<table id="sudokuBoard"></table>
