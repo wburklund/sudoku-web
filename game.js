@@ -1,7 +1,7 @@
 init();
 
-const cells = [...document.querySelectorAll('.cell')];
-const inputs = [...document.querySelectorAll('.cell-input')];
+const cells = [...document.getElementsByClassName('cell')];
+const inputs = [...document.getElementsByClassName('cell-input')];
 
 render();
 sudokuStore.subscribe(render);
@@ -18,12 +18,20 @@ function init() {
         // add listener to child input
         cell.childNodes[0].addEventListener('input', onCellInput);
     });
+
+    document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);    
 }
 
 function onCellInput() {
     // index comes from parent cell id in the form 'c#'
     const index = Number(this.parentNode.id.slice(1));
     sudokuStore.dispatch({ type: 'CELL_INPUT', index: index, value: this.value });
+}
+
+function onDifficultyChange() {
+    if (window.confirm('Start new game?')) {
+        sudokuStore.dispatch({ type: 'DIFFICULTY_CHANGE', value: this.value});
+    }
 }
 
 function buildBoardHTML() {

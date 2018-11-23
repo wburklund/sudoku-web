@@ -8,6 +8,9 @@ function sudokuUpdate(oldState = _newGame("medium"), action) {
             }
             state[action.index].value = action.value;
             break;
+        case 'DIFFICULTY_CHANGE':
+            state = _newGame(action.value);
+            break;
     }
     return state;
 }
