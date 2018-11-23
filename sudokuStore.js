@@ -1,3 +1,5 @@
+let sudokuStore = Redux.createStore(sudokuUpdate);
+
 function sudokuUpdate(oldState = _newGame("medium"), action) {
     let state = JSON.parse(JSON.stringify(oldState));
     
@@ -38,5 +40,3 @@ function _newGame(difficulty) {
         });
     return state;
 }
-
-  let sudokuStore = Redux.createStore(sudokuUpdate);
