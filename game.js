@@ -3,6 +3,9 @@ init();
 const cells = [...document.querySelectorAll('.cell')];
 const inputs = [...document.querySelectorAll('.cell-input')];
 
+render();
+sudokuStore.subscribe(render);
+
 function init() {
     // Create the 'sudokuBoard' table
     document.querySelector('#sudokuBoard').innerHTML = buildBoardHTML();
@@ -20,7 +23,7 @@ function init() {
 function onCellInput() {
     // index comes from parent cell id in the form 'c#'
     const index = Number(this.parentNode.id.slice(1));
-    sudokuStore.dispatch({ type: 'CELL_INPUT', index: index, value: this.value});
+    sudokuStore.dispatch({ type: 'CELL_INPUT', index: index, value: this.value });
 }
 
 function buildBoardHTML() {
@@ -41,11 +44,10 @@ function buildCellHTML() {
     return cellHTML;
 }
 
-// *****************************************************
-// Temporary rendering code
-let __board = sudokuStore.getState();
+function render() {
+    const board = sudokuStore.getState();
 
-inputs.forEach((input, index) => {
-    input.value = __board[index];
-});
-// *****************************************************
+    inputs.forEach((input, i) => {
+        input.value = board[i];
+    });
+}
