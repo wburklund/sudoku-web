@@ -1,6 +1,6 @@
-let sudokuStore = Redux.createStore(sudokuUpdate);
+let store = Redux.createStore(_sudokuStore);
 
-function sudokuUpdate(oldState = _newGame("medium"), action) {
+function _sudokuStore(oldState = _newGame("medium"), action) {
     let state = JSON.parse(JSON.stringify(oldState));
     
     switch (action.type) {

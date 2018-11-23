@@ -5,7 +5,7 @@ const inputs = [...document.getElementsByClassName('cell-input')];
 const difficultySelect = document.getElementById('difficultySelect');
 
 render();
-sudokuStore.subscribe(render);
+store.subscribe(render);
 
 function init() {
     // Create the 'sudokuBoard' table
@@ -26,11 +26,11 @@ function init() {
 
 function setupControlListeners() {
     document.getElementById('saveButton').addEventListener('click', () => {
-        sudokuStore.dispatch({ type: 'SAVE_GAME' });
+        store.dispatch({ type: 'SAVE_GAME' });
     });
     document.getElementById('loadButton').addEventListener('click', () => {
         if (window.confirm('Load saved game? This will end your current game.')) {
-            sudokuStore.dispatch({ type: 'LOAD_GAME' });
+            store.dispatch({ type: 'LOAD_GAME' });
         }
     });
 }
@@ -38,14 +38,14 @@ function setupControlListeners() {
 function onCellInput() {
     // index comes from parent cell id in the form 'c#'
     const index = Number(this.parentNode.id.slice(1));
-    sudokuStore.dispatch({ type: 'CELL_INPUT', index: index, value: this.value });
+    store.dispatch({ type: 'CELL_INPUT', index: index, value: this.value });
 }
 
 function onDifficultyChange() {
     if (window.confirm('Start new game?')) {
-        sudokuStore.dispatch({ type: 'DIFFICULTY_CHANGE', value: this.value});
+        store.dispatch({ type: 'DIFFICULTY_CHANGE', value: this.value});
     } else {
-        this.value = sudokuStore.getState().difficulty;
+        this.value = store.getState().difficulty;
     }
 }
 
@@ -68,7 +68,7 @@ function buildCellHTML() {
 }
 
 function render() {
-    const state = sudokuStore.getState();
+    const state = store.getState();
     const board = state.board;
 
     inputs.forEach((input, i) => {
