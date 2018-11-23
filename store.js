@@ -11,7 +11,8 @@ function _sudokuStore(oldState = _newGame("medium"), action) {
             const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
             return savedState || state;
         case 'CELL_INPUT':
-            if (!sudoku.DIGITS.includes(action.value)) {
+            if (!'123456789'.includes(action.value)
+            || state.board[action.index].type === 'given') {
                 return state;
             }
             state.board[action.index].value = action.value;
