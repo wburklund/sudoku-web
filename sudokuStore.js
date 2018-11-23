@@ -9,11 +9,7 @@ function sudokuUpdate(oldState = _newGame("medium"), action) {
             return state;
         case 'LOAD_GAME':
             const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
-            if (!savedState) {
-                return state;
-            }
-            state = savedState;
-            break;
+            return savedState || state;
         case 'CELL_INPUT':
             if (!sudoku.DIGITS.includes(action.value)) {
                 return state;
