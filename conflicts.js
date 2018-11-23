@@ -1,5 +1,4 @@
-function updateConflicts(state) {
-    const board = state.board;
+function updateConflicts(board) {
     board.forEach(cell => {
         if (cell.type === 'conflict') {
             cell.type = 'normal';

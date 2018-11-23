@@ -20,7 +20,7 @@ function _sudokuStore(oldState = _newGame("medium"), action) {
             state = _newGame(action.value);
             break;
     }
-    updateConflicts(state);
+    updateConflicts(state.board);
     return state;
 }
 
