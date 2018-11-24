@@ -23,6 +23,7 @@ function init() {
 
     document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
     setupControlListeners();
+    document.getElementById('i0').focus();
 }
 
 function setupControlListeners() {
