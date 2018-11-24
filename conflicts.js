@@ -1,7 +1,7 @@
 function updateConflicts(board) {
     board.forEach(cell => {
-        if (cell.type === 'conflict') {
-            cell.type = 'normal';
+        if (cell.class === 'conflict') {
+            cell.class = 'normal';
         }
     });
     for (let i = 0; i < 9; i++) {
@@ -47,8 +47,8 @@ function _markConflicts(cellSet) {
         .filter(d => values.indexOf(d) !== values.lastIndexOf(d));
 
     cellSet.forEach((c, index) => {
-        if (conflicts.includes(c.value) && c.type !== 'given') {
-            c.type = 'conflict';
+        if (conflicts.includes(c.value) && c.class !== 'given') {
+            c.class = 'conflict';
         }
     });
 }

@@ -12,7 +12,7 @@ function _sudokuStore(oldState = _newGame("medium"), action) {
             return savedState || state;
         case 'CELL_INPUT':
             if (!'123456789'.includes(action.value)
-            || state.board[action.index].type === 'given') {
+            || state.board[action.index].class === 'given') {
                 return state;
             }
             state.board[action.index].value = action.value;
@@ -32,7 +32,7 @@ function _newGame(difficulty) {
         .split('')
         .map(n => {
             return {
-                type: (n === '.' ? 'normal' : 'given'),
+                class: (n === '.' ? 'normal' : 'given'),
                 value: (n === '.' ? '' : n),
             }
         });

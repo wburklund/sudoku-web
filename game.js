@@ -108,7 +108,7 @@ function render() {
 
     inputs.forEach((input, i) => {
         input.value = board[i].value;
-        input.className = 'cell-input ' + board[i].type;
+        input.className = 'cell-input ' + board[i].class;
     });
 
     document.getElementById('difficultySelect').value = state.difficulty;
