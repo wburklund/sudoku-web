@@ -25,20 +25,22 @@ tr td:nth-of-type(6) {
 
 .cell {
     border: 1px solid black;
+    padding: 0px;
+    margin: 0px;
     width: 50px;
     height: 50px;
 }
 
 .cell-input {
-    border: none;
-    caret-color: rgba(0, 0, 0, 0.0);
-    height: 48px;
+    border: 0px;
+    padding: 0px;
+    height: 50px;
     width: 50px;
-    margin: auto;
     text-align: center;
     font-size: 2.5rem;
     outline-width: 0;
     transition: color 0.25s, opacity 0.35s;
+    caret-color: rgba(0, 0, 0, 0.0);
 }
 
 .cell-input:focus {
