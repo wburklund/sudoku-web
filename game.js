@@ -16,8 +16,9 @@ function init() {
         cell.id = 'c' + index;
         cell.classList.add("cell");
         cell.innerHTML = buildCellHTML();
-        // add listener to child input
-        cell.childNodes[0].addEventListener('input', onCellInput);
+        // add id/listener to child input
+        cell.childNodes[0].id = 'i' + index;
+        cell.childNodes[0].addEventListener('keydown', onInputKeydown);
     });
 
     document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
@@ -35,10 +36,35 @@ function setupControlListeners() {
     });
 }
 
-function onCellInput() {
-    // index comes from parent cell id in the form 'c#'
-    const index = Number(this.parentNode.id.slice(1));
-    store.dispatch({ type: 'CELL_INPUT', index: index, value: this.value });
+function onInputKeydown(event) {
+    // index comes from input id in the form 'i#'
+    const index = Number(this.id.slice(1));
+    const x = index % 9;
+    const y = Math.floor(index / 9);
+
+    let newIndex;
+    switch(event.key) {
+        case 'ArrowLeft':
+            newIndex = 9 * y + ((x - 1) % 9);
+            break;
+        case 'ArrowUp':
+            newIndex = 9 * ((y - 1) % 9) + x;
+            break;
+        case 'ArrowRight':
+            newIndex = 9 * y + ((x + 1) % 9);
+            break;
+        case 'ArrowDown':
+            newIndex = 9 * ((y + 1) % 9) + x;
+            break;
+        case 'Backspace':
+            store.dispatch({ type: 'CELL_INPUT', index: index, value: '' });
+            return;
+        default:
+            store.dispatch({ type: 'CELL_INPUT', index: index, value: event.key });
+            return;
+    }
+
+    inputs[newIndex].select();
 }
 
 function onDifficultyChange() {
