@@ -1,40 +1,54 @@
+//  Set during init()
+let cells;
+let inputs;
+let difficultySelect;
+
 init();
-
-const cells = [...document.getElementsByClassName('cell')];
-const inputs = [...document.getElementsByClassName('cell-input')];
-const difficultySelect = document.getElementById('difficultySelect');
-
-render();
-store.subscribe(render);
 
 function init() {
     // Create the 'sudokuBoard' table
     document.querySelector('#sudokuBoard').innerHTML = buildBoardHTML();
 
     // Setup each cell
-    [...document.querySelectorAll('#sudokuBoard td')].forEach((cell, index) => {
-        cell.id = 'c' + index;
-        cell.classList.add("cell");
-        cell.innerHTML = buildCellHTML();
-        // add id/listener to child input
-        cell.childNodes[0].id = 'i' + index;
-        cell.childNodes[0].addEventListener('keydown', onInputKeydown);
-    });
+    cells = [...document.querySelectorAll('#sudokuBoard td')];
+    cells.forEach((cell, index) => setupCell(cell, index));
 
-    document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
+    inputs = cells.map(cell => cell.childNodes[0]);
+    difficultySelect = document.getElementById('difficultySelect');
+
     setupControlListeners();
+
+    render();
+    store.subscribe(render);
+
     document.getElementById('i0').focus();
 }
 
-function setupControlListeners() {
-    document.getElementById('saveButton').addEventListener('click', () => {
-        store.dispatch({ type: 'SAVE_GAME' });
-    });
-    document.getElementById('loadButton').addEventListener('click', () => {
-        if (window.confirm('Load saved game? This will end your current game.')) {
-            cellOpacityTransition(() => store.dispatch({ type: 'LOAD_GAME' }));
+function buildBoardHTML() {
+    let boardHTML = '<tbody>';
+    for (let y = 0; y < 9; y++) {
+        boardHTML += '<tr>';
+        for (let x = 0; x < 9; x++) {
+            boardHTML += '<td></td>';
         }
-    });
+        boardHTML += '</tr>';
+    }
+    boardHTML += '</tbody>';
+    return boardHTML;
+}
+
+function setupCell(cell, index) {
+    cell.id = 'c' + index;
+    cell.classList.add("cell");
+    cell.innerHTML = buildCellHTML();
+    // add id/listener to child input
+    cell.childNodes[0].id = 'i' + index;
+    cell.childNodes[0].addEventListener('keydown', onInputKeydown);
+}
+
+function buildCellHTML() {
+    let cellHTML = '<input type="text" class="cell-input" maxlength="1">';
+    return cellHTML;
 }
 
 function onInputKeydown(event) {
@@ -69,30 +83,25 @@ function onInputKeydown(event) {
     inputs[newIndex].select();
 }
 
+function setupControlListeners() {
+    difficultySelect.addEventListener('change', onDifficultyChange);
+
+    document.getElementById('saveButton').addEventListener('click', () => {
+        store.dispatch({ type: 'SAVE_GAME' });
+    });
+    document.getElementById('loadButton').addEventListener('click', () => {
+        if (window.confirm('Load saved game? This will end your current game.')) {
+            cellOpacityTransition(() => store.dispatch({ type: 'LOAD_GAME' }));
+        }
+    });
+}
+
 function onDifficultyChange() {
     if (window.confirm('Start new game?')) {
         cellOpacityTransition(() => store.dispatch({ type: 'DIFFICULTY_CHANGE', value: this.value}));
     } else {
         this.value = store.getState().difficulty;
     }
-}
-
-function buildBoardHTML() {
-    let boardHTML = '<tbody>';
-    for (let y = 0; y < 9; y++) {
-        boardHTML += '<tr>';
-        for (let x = 0; x < 9; x++) {
-            boardHTML += '<td></td>';
-        }
-        boardHTML += '</tr>';
-    }
-    boardHTML += '</tbody>';
-    return boardHTML;
-}
-
-function buildCellHTML() {
-    let cellHTML = '<input type="text" class="cell-input" maxlength="1">';
-    return cellHTML;
 }
 
 function render() {
