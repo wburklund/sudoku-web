@@ -57,6 +57,7 @@ function onInputKeydown(event) {
             newIndex = 9 * ((y + 1) % 9) + x;
             break;
         case 'Backspace':
+        case 'Delete':
             store.dispatch({ type: 'CELL_INPUT', index: index, value: '' });
             return;
         default:
