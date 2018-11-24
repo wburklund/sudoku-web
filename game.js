@@ -39,9 +39,10 @@ function setupCell(cell, index) {
     cell.id = 'c' + index;
     cell.classList.add("cell");
     cell.innerHTML = buildCellHTML();
-    // add id/listener to child input
+    // add id/listeners to child input
     cell.childNodes[0].id = 'i' + index;
-    cell.childNodes[0].addEventListener('keydown', onInputKeydown);
+    cell.childNodes[0].addEventListener('keydown', onInputKeydown); // navigation/deletes
+    cell.childNodes[0].addEventListener('input', onCellInput);  // validation of input
 }
 
 function buildCellHTML() {
@@ -72,13 +73,15 @@ function onInputKeydown(event) {
         case 'Backspace':
         case 'Delete':
             store.dispatch({ type: 'CELL_INPUT', index: index, value: '' });
-            return;
         default:
-            store.dispatch({ type: 'CELL_INPUT', index: index, value: event.key });
             return;
     }
 
     inputs[newIndex].select();
+}
+
+function onCellInput() {
+    store.dispatch({ type: 'CELL_INPUT', index: Number(this.id.slice(1)), value: this.value });
 }
 
 function setupControlListeners() {
