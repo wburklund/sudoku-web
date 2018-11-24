@@ -108,8 +108,7 @@ function render() {
 
     inputs.forEach((input, i) => {
         input.value = board[i].value;
-        // TODO: set classlist directly using type
-        board[i].type === 'conflict' ? input.classList.add('conflict') : input.classList.remove('conflict');
+        input.className = 'cell-input ' + board[i].type;
     });
 
     document.getElementById('difficultySelect').value = state.difficulty;
