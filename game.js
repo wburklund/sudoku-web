@@ -45,10 +45,10 @@ function onInputKeydown(event) {
     let newIndex;
     switch(event.key) {
         case 'ArrowLeft':
-            newIndex = 9 * y + ((x - 1) % 9);
+            newIndex = 9 * y + ((x + 8) % 9);   // -1 % 9 === -1, apparently...
             break;
         case 'ArrowUp':
-            newIndex = 9 * ((y - 1) % 9) + x;
+            newIndex = 9 * ((y + 8) % 9) + x;
             break;
         case 'ArrowRight':
             newIndex = 9 * y + ((x + 1) % 9);
