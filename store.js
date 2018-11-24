@@ -10,6 +10,11 @@ function _sudokuStore(oldState = _newGame("medium"), action) {
         case 'LOAD_GAME':
             const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
             return savedState || state;
+        case 'RESET_GAME':
+            state.board = state.board.map(cell =>
+                cell.class === 'given' ? cell : { class: 'normal', value: '' }
+            );
+            return state;
         case 'CELL_INPUT':
             if (!'123456789'.includes(action.value)
             || state.board[action.index].class === 'given') {

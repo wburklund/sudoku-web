@@ -87,9 +87,16 @@ function setupControlListeners() {
     document.getElementById('saveButton').addEventListener('click', () => {
         store.dispatch({ type: 'SAVE_GAME' });
     });
+    
     document.getElementById('loadButton').addEventListener('click', () => {
         if (window.confirm('Load saved game? This will end your current game.')) {
             cellOpacityTransition(() => store.dispatch({ type: 'LOAD_GAME' }));
+        }
+    });
+
+    document.getElementById('resetButton').addEventListener('click', () => {
+        if (window.confirm('Reset game?')) {
+            cellOpacityTransition(() => store.dispatch({ type: 'RESET_GAME' }));
         }
     });
 }
