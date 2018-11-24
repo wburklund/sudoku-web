@@ -27,7 +27,9 @@ function buildBoardHTML() {
     for (let y = 0; y < 9; y++) {
         boardHTML += '<tr>';
         for (let x = 0; x < 9; x++) {
-            boardHTML += '<td></td>';
+            boardHTML += '<td class="cell">';
+            boardHTML += '<input type="text" maxlength="1">';
+            boardHTML += '</td>';
         }
         boardHTML += '</tr>';
     }
@@ -37,17 +39,11 @@ function buildBoardHTML() {
 
 function setupCell(cell, index) {
     cell.id = 'c' + index;
-    cell.classList.add("cell");
-    cell.innerHTML = buildCellHTML();
     // add id/listeners to child input
     cell.childNodes[0].id = 'i' + index;
+    cell.childNodes[0].className = 'cell-input';
     cell.childNodes[0].addEventListener('keydown', onInputKeydown); // navigation/deletes
     cell.childNodes[0].addEventListener('input', onCellInput);  // validation of input
-}
-
-function buildCellHTML() {
-    let cellHTML = '<input type="text" class="cell-input" maxlength="1">';
-    return cellHTML;
 }
 
 function onInputKeydown(event) {
@@ -59,7 +55,8 @@ function onInputKeydown(event) {
     let newIndex;
     switch(event.key) {
         case 'ArrowLeft':
-            newIndex = 9 * y + ((x + 8) % 9);   // -1 % 9 === -1, apparently...
+        // x and y coordinates need to be positive, so add 8 instead of subtracting 1
+            newIndex = 9 * y + ((x + 8) % 9);
             break;
         case 'ArrowUp':
             newIndex = 9 * ((y + 8) % 9) + x;
