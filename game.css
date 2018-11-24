@@ -31,6 +31,7 @@ tr td:nth-of-type(6) {
 
 .cell-input {
     border: none;
+    caret-color: rgba(0, 0, 0, 0.0);
     height: 48px;
     width: 50px;
     margin: auto;
@@ -38,6 +39,10 @@ tr td:nth-of-type(6) {
     font-size: 2.5rem;
     outline-width: 0;
     transition: color 0.25s, opacity 0.35s;
+}
+
+.cell-input:focus {
+    background-color: aliceblue;
 }
 
 .cell-input.conflict {
