@@ -51,6 +51,6 @@ tr td:nth-of-type(6) {
     color: red;
 }
 
-.cell-input.invisible {
+#sudokuBoard.invisible .cell-input {
     opacity: 0;
 }

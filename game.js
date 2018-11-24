@@ -1,7 +1,6 @@
 //  Set during init()
 let cells;
 let inputs;
-let difficultySelect;
 
 init();
 
@@ -14,7 +13,6 @@ function init() {
     cells.forEach((cell, index) => setupCell(cell, index));
 
     inputs = cells.map(cell => cell.childNodes[0]);
-    difficultySelect = document.getElementById('difficultySelect');
 
     setupControlListeners();
 
@@ -84,7 +82,7 @@ function onInputKeydown(event) {
 }
 
 function setupControlListeners() {
-    difficultySelect.addEventListener('change', onDifficultyChange);
+    document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
 
     document.getElementById('saveButton').addEventListener('click', () => {
         store.dispatch({ type: 'SAVE_GAME' });
@@ -114,17 +112,13 @@ function render() {
         board[i].type === 'conflict' ? input.classList.add('conflict') : input.classList.remove('conflict');
     });
 
-    difficultySelect.value = state.difficulty;
+    document.getElementById('difficultySelect').value = state.difficulty;
 }
 
 const cellOpacityTransition = (func) => {
-    inputs.forEach(input => {
-        input.classList.add('invisible');
-    })
+    document.getElementById('sudokuBoard').classList.add('invisible');
     setTimeout(() => {
         func();
-        inputs.forEach(input => {
-            input.classList.remove('invisible');
-        })
-    }, 350);
+        document.getElementById('sudokuBoard').classList.remove('invisible');
+    }, 350);    // CSS .cell-input opacity transition time
 }
