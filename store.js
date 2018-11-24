@@ -1,3 +1,4 @@
+const emptyCell = { class: 'normal', value: '' };
 const store = Redux.createStore(_sudokuStore);
 
 function _sudokuStore(oldState = _newGame("medium"), action) {
@@ -11,9 +12,7 @@ function _sudokuStore(oldState = _newGame("medium"), action) {
             const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
             return savedState || state;
         case 'RESET_GAME':
-            state.board = state.board.map(cell =>
-                cell.class === 'given' ? cell : { class: 'normal', value: '' }
-            );
+            state.board = state.board.map(cell => cell.class === 'given' ? cell : emptyCell);
             return state;
         case 'CELL_INPUT':
             if (!'123456789'.includes(action.value)
@@ -35,11 +34,6 @@ function _newGame(difficulty) {
     state.difficulty = difficulty;
     state.board = sudoku.generate(difficulty)
         .split('')
-        .map(n => {
-            return {
-                class: (n === '.' ? 'normal' : 'given'),
-                value: (n === '.' ? '' : n),
-            }
-        });
+        .map(n => n === '.' ? emptyCell : { class: 'given', value: n });
     return state;
 }
