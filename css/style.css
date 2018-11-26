@@ -25,6 +25,7 @@ body {
   .header label {
     font-size: 2rem; }
   .header select {
+    width: 6.65rem;
     background-color: transparent;
     color: white;
     outline-width: 0;
