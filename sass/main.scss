@@ -1,4 +1,5 @@
-$border-outer: .2rem solid black;
+$border-outer: .5rem solid black;
+$border-box: .2rem solid black;
 $border-inner: .1rem solid black;
 
 * {
@@ -19,7 +20,7 @@ body {
 
 .header {
     margin: 1rem auto 0 auto;
-    width: 46.4rem;
+    width: 47rem;
     background-color: black;
     color: white;
 
@@ -53,12 +54,12 @@ table {
 
 tr:nth-of-type(3) td,
 tr:nth-of-type(6) td {
-    border-bottom: $border-outer;
+    border-bottom: $border-box;
 }
 
 tr td:nth-of-type(3),
 tr td:nth-of-type(6) {
-    border-right: $border-outer;
+    border-right: $border-box;
 }
 
 .cell {

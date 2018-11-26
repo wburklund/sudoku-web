@@ -13,7 +13,7 @@ body {
 
 .header {
   margin: 1rem auto 0 auto;
-  width: 46.4rem;
+  width: 47rem;
   background-color: black;
   color: white; }
   .header h1 {
@@ -35,7 +35,7 @@ body {
 
 table {
   margin: auto;
-  border: 0.2rem solid black;
+  border: 0.5rem solid black;
   border-collapse: collapse; }
 
 tr:nth-of-type(3) td,
