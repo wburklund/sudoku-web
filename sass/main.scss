@@ -17,21 +17,26 @@ body {
     text-align: center;
 }
 
-h1 {
-    font-weight: 700;
-    font-size: 3rem;
-    margin: 1rem;
-}
+.header {
+    line-height: 4.5rem;
 
-#controls {
-    margin: 1rem auto;
-
-    button {
-        padding: .1rem .6rem;
+    h1 {
+        font-weight: 700;
+        font-size: 3rem;
+        margin: 1rem;
+        display: inline-block;
     }
 
     label {
-        font-size: 1.2rem;
+        font-size: 2rem;
+    }
+    select {
+        background-color: rgba(0, 0, 0, 0);
+        outline-width: 0;
+        border: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;    
+        font-size: 1.5rem;
     }
 }
 

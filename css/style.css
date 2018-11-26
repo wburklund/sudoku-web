@@ -11,17 +11,22 @@ body {
   font-family: 'Old Standard TT', serif;
   text-align: center; }
 
-h1 {
-  font-weight: 700;
-  font-size: 3rem;
-  margin: 1rem; }
-
-#controls {
-  margin: 1rem auto; }
-  #controls button {
-    padding: .1rem .6rem; }
-  #controls label {
-    font-size: 1.2rem; }
+.header {
+  line-height: 4.5rem; }
+  .header h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    margin: 1rem;
+    display: inline-block; }
+  .header label {
+    font-size: 2rem; }
+  .header select {
+    background-color: rgba(0, 0, 0, 0);
+    outline-width: 0;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    font-size: 1.5rem; }
 
 table {
   margin: auto;
