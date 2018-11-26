@@ -1,10 +1,14 @@
-$border-outer: 0.2 rem solid black;
-$border-inner: 0.1 rem solid black;
+$border-outer: .2rem solid black;
+$border-inner: .1rem solid black;
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
 }
 
 body {
@@ -15,15 +19,19 @@ body {
 
 h1 {
     font-weight: 700;
-    margin: 1 rem;
-    font-size: 62.5%;
+    font-size: 3rem;
+    margin: 1rem;
 }
 
 #controls {
-    margin: 1 rem auto;
+    margin: 1rem auto;
 
     button {
-        padding: .1 rem .6 rem;
+        padding: .1rem .6rem;
+    }
+
+    label {
+        font-size: 1.2rem;
     }
 }
 
@@ -50,10 +58,10 @@ tr td:nth-of-type(6) {
 
 .cell-input {
     border: none;
-    height: 5 rem;
-    width: 5 rem;
+    height: 5rem;
+    width: 5rem;
     text-align: center;
-    font-size: 2.5 rem;
+    font-size: 4rem;
     outline-width: 0;
     background-color: rgba(0, 0, 0, 0);
     transition: color 0.25s, opacity 0.35s;
