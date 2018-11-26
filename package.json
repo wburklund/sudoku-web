@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/wburklund/sudoku-web/issues"
   },
-  "homepage": "https://github.com/wburklund/sudoku-web#readme"
+  "homepage": "https://github.com/wburklund/sudoku-web#readme",
+  "devDependencies": {
+    "node-sass": "^4.10.0"
+  }
 }
