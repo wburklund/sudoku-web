@@ -28,7 +28,7 @@ function buildBoardHTML() {
         boardHTML += '<tr>';
         for (let x = 0; x < 9; x++) {
             boardHTML += '<td class="cell">';
-            boardHTML += '<input type="text" maxlength="1">';
+            boardHTML += '<input type="text">';
             boardHTML += '</td>';
         }
         boardHTML += '</tr>';
@@ -70,7 +70,9 @@ function onInputKeydown(event) {
         case 'Backspace':
         case 'Delete':
             store.dispatch({ type: 'CELL_INPUT', index: index, value: '' });
+            return;
         default:
+            store.dispatch({ type: 'CELL_INPUT', index: Number(this.id.slice(1)), value: event.key });
             return;
     }
 
@@ -78,7 +80,8 @@ function onInputKeydown(event) {
 }
 
 function onCellInput() {
-    store.dispatch({ type: 'CELL_INPUT', index: Number(this.id.slice(1)), value: this.value });
+    const index = this.id.slice(1);
+    this.value = store.getState().board[index].value;
 }
 
 function setupControlListeners() {
