@@ -46,18 +46,14 @@ tr td:nth-of-type(6) {
   transition: color 0.25s, opacity 0.35s;
   caret-color: rgba(0, 0, 0, 0);
   font-family: 'Dancing Script', cursive; }
-
-.cell-input.given {
-  font-family: 'Old Standard TT', serif; }
-
-.cell-input.normal {
-  color: #5c6274; }
-
-.cell-input.conflict {
-  color: red; }
-
-.cell-input:focus {
-  background-color: rgba(240, 248, 255, 0.6); }
+  .cell-input.normal {
+    color: #5c6274; }
+  .cell-input.given {
+    font-family: 'Old Standard TT', serif; }
+  .cell-input.conflict {
+    color: red; }
+  .cell-input:focus {
+    background-color: rgba(240, 248, 255, 0.6); }
 
 #sudokuBoard.invisible .cell-input {
   opacity: 0; }
