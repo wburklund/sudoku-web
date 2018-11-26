@@ -10,36 +10,37 @@ body {
 
 h1 {
   font-weight: 700;
-  margin: 10px; }
+  margin: 1 rem;
+  font-size: 62.5%; }
 
 #controls {
-  margin: 10px auto; }
+  margin: 1 rem auto; }
   #controls button {
-    padding: 1px 6px; }
+    padding: .1 rem .6 rem; }
 
 table {
   margin: auto;
-  border: 2px solid black;
+  border: 0.2 rem solid black;
   border-collapse: collapse; }
 
 tr:nth-of-type(3) td,
 tr:nth-of-type(6) td {
-  border-bottom: 2px solid black; }
+  border-bottom: 0.2 rem solid black; }
 
 tr td:nth-of-type(3),
 tr td:nth-of-type(6) {
-  border-right: 2px solid black; }
+  border-right: 0.2 rem solid black; }
 
 .cell {
-  border: 1px solid black;
+  border: 0.1 rem solid black;
   background-color: rgba(255, 255, 255, 0.5); }
 
 .cell-input {
-  border: 0px;
-  height: 50px;
-  width: 50px;
+  border: none;
+  height: 5 rem;
+  width: 5 rem;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.5 rem;
   outline-width: 0;
   background-color: rgba(0, 0, 0, 0);
   transition: color 0.25s, opacity 0.35s;
