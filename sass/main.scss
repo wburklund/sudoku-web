@@ -1,0 +1,69 @@
+body {
+    background-image: url(http://www.anasfim.com/p/2018/03/blank-old-newspaper-background-templates-corner-intended-for-blank-old-newspaper-background.jpg);
+    font-family: 'Old Standard TT', serif;
+    text-align: center;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+#controls {
+    margin: 10px auto;
+}
+
+table {
+    margin:auto;
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+tr:nth-of-type(3) td,
+tr:nth-of-type(6) td {
+    border-bottom: 2px solid black;
+}
+
+tr td:nth-of-type(3),
+tr td:nth-of-type(6) {
+    border-right: 2px solid black;
+}
+
+.cell {
+    border: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0px;
+}
+
+.cell-input {
+    border: 0px;
+    padding: 0px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font-size: 2.5rem;
+    outline-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: color 0.25s, opacity 0.35s;
+    caret-color: rgba(0, 0, 0, 0.0);
+    font-family: 'Dancing Script', cursive;
+}
+
+.cell-input.given {
+    font-family: 'Old Standard TT', serif;
+}
+
+.cell-input.normal {
+    color: #5c6274;
+}
+
+.cell-input.conflict {
+    color: red;
+}
+
+.cell-input:focus {
+    background-color: rgba(240, 248, 255, 0.6);
+}
+
+#sudokuBoard.invisible .cell-input {
+    opacity: 0;
+}
