@@ -4,7 +4,7 @@
   "description": "",
   "main": "game.js",
   "scripts": {
-    "compile-css": "node-sass sass/main.scss style.css"
+    "compile-css": "node-sass sass/main.scss css/style.css"
   },
   "repository": {
     "type": "git",
