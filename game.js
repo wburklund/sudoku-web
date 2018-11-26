@@ -74,7 +74,7 @@ function onInputKeydown(event) {
             return;
     }
 
-    inputs[newIndex].select();
+    inputs[newIndex].focus();
 }
 
 function onCellInput() {
