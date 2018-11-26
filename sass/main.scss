@@ -1,3 +1,6 @@
+$border-outer: 2px solid black;
+$border-inner: 1px solid black;
+
 body {
     background-image: url(http://www.anasfim.com/p/2018/03/blank-old-newspaper-background-templates-corner-intended-for-blank-old-newspaper-background.jpg);
     font-family: 'Old Standard TT', serif;
@@ -14,22 +17,22 @@ h1 {
 
 table {
     margin:auto;
-    border: 2px solid black;
+    border: $border-outer;
     border-collapse: collapse;
 }
 
 tr:nth-of-type(3) td,
 tr:nth-of-type(6) td {
-    border-bottom: 2px solid black;
+    border-bottom: $border-outer;
 }
 
 tr td:nth-of-type(3),
 tr td:nth-of-type(6) {
-    border-right: 2px solid black;
+    border-right: $border-outer;
 }
 
 .cell {
-    border: 1px solid black;
+    border: $border-inner;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 0px;
 }
