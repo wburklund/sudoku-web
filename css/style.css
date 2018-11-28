@@ -63,12 +63,9 @@ tr td:nth-of-type(6) {
   outline-width: 0;
   background-color: transparent;
   transition: color 0.25s, opacity 0.35s;
-  caret-color: transparent;
-  font-family: 'Dancing Script', cursive; }
+  caret-color: transparent; }
   .cell-input.normal {
     color: #5c6274; }
-  .cell-input.given {
-    font-family: 'Lato', sans-serif; }
   .cell-input.conflict {
     color: red; }
   .cell-input:focus {

@@ -83,14 +83,11 @@ tr td:nth-of-type(6) {
     background-color: transparent;
     transition: color 0.25s, opacity 0.35s;
     caret-color: transparent;
-    font-family: 'Dancing Script', cursive;
 
     &.normal {
         color: #5c6274;
     }
-    &.given {
-        font-family: 'Lato', sans-serif;
-    }
+
     &.conflict {
         color: red;
     }
