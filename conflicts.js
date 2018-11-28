@@ -32,8 +32,8 @@ function _markConflictsForBox(board, box) {
     const endColumn = startColumn + 2;
 
     const cellBox = board.filter((cell, index) => {
-        return index >= startRow && index <= endRow
-            && index >= startColumn && index <= endColumn;
+        return index % 9 >= startRow && index % 9 <= endRow
+            && Math.floor(index / 9) >= startColumn && Math.floor(index / 9) <= endColumn;
     });
 
     _markConflicts(cellBox);
