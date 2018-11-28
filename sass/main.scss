@@ -15,7 +15,7 @@ html {
 body {
     background-image: url(http://www.photos-public-domain.com/wp-content/uploads/2012/05/ivory-off-white-paper-texture.jpg);
     background-size: cover;
-    font-family: 'Old Standard TT', serif;
+    font-family: 'Lato', sans-serif;
     text-align: center;
 }
 
@@ -89,7 +89,7 @@ tr td:nth-of-type(6) {
         color: #5c6274;
     }
     &.given {
-        font-family: 'Old Standard TT', serif;
+        font-family: 'Lato', sans-serif;
     }
     &.conflict {
         color: red;
