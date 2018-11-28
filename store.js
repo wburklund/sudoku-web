@@ -1,7 +1,7 @@
 const emptyCell = { class: 'normal', value: '' };
 const store = Redux.createStore(_sudokuStore);
 
-function _sudokuStore(oldState = _newGame("medium"), action) {
+function _sudokuStore(oldState = _initStore(), action) {
     let state = JSON.parse(JSON.stringify(oldState));
     
     switch (action.type) {
@@ -27,6 +27,11 @@ function _sudokuStore(oldState = _newGame("medium"), action) {
     }
     updateConflicts(state.board);
     return state;
+}
+
+function _initStore() {
+    const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
+    return savedState || _newGame('medium');
 }
 
 function _newGame(difficulty) {
