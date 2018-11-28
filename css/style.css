@@ -16,7 +16,10 @@ body {
   margin: 1rem auto 0 auto;
   width: 47rem;
   background-color: black;
-  color: white; }
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center; }
   .header h1 {
     font-weight: 700;
     font-size: 3rem;
