@@ -81,11 +81,11 @@ tr td:nth-of-type(6) {
     font-size: 4rem;
     outline-width: 0;
     background-color: transparent;
-    transition: color 0.25s, opacity 0.35s;
+    transition: color 0.5s, opacity 0.35s;
     caret-color: transparent;
 
     &.normal {
-        color: #5c6274;
+        color: navy;
     }
 
     &.conflict {
