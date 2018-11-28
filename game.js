@@ -43,10 +43,10 @@ function setupCell(cell, index) {
     cell.childNodes[0].id = 'i' + index;
     cell.childNodes[0].className = 'cell-input';
     cell.childNodes[0].addEventListener('keydown', onInputKeydown); // navigation/deletes
-    cell.childNodes[0].addEventListener('input', onCellInput);  // validation of input
 }
 
 function onInputKeydown(event) {
+    event.preventDefault();
     // index comes from input id in the form 'i#'
     const index = Number(this.id.slice(1));
     const x = index % 9;
@@ -77,11 +77,6 @@ function onInputKeydown(event) {
     }
 
     inputs[newIndex].focus();
-}
-
-function onCellInput() {
-    const index = this.id.slice(1);
-    this.value = store.getState().board[index].value;
 }
 
 function setupControlListeners() {
