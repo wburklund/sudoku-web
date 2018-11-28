@@ -5,12 +5,6 @@ function _sudokuStore(oldState = _initStore(), action) {
     let state = JSON.parse(JSON.stringify(oldState));
     
     switch (action.type) {
-        case 'SAVE_GAME':
-            localStorage.setItem('sudoku_saved_game', JSON.stringify(state));
-            return state;
-        case 'LOAD_GAME':
-            const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
-            return savedState || state;
         case 'RESET_GAME':
             state.board = state.board.map(cell => cell.class === 'given' ? cell : emptyCell);
             return state;
@@ -26,6 +20,7 @@ function _sudokuStore(oldState = _initStore(), action) {
             break;
     }
     updateConflicts(state.board);
+    localStorage.setItem('sudoku_saved_game', JSON.stringify(state));
     return state;
 }
 
