@@ -85,7 +85,7 @@ function setupControlListeners() {
 
 function onDifficultyChange() {
     if (window.confirm('Start new game?')) {
-        cellOpacityTransition(() => store.dispatch({ type: 'NEW_GAME', value: this.value}));
+        opacityTransition(() => store.dispatch({ type: 'NEW_GAME', value: this.value}));
     } else {
         this.value = store.getState().difficulty;
     }
@@ -103,7 +103,7 @@ function render() {
     document.getElementById('difficultySelect').value = state.difficulty;
 }
 
-const cellOpacityTransition = (func) => {
+function opacityTransition (func) {
     document.getElementById('sudokuBoard').classList.add('invisible');
     setTimeout(() => {
         func();
