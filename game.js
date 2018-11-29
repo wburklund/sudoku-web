@@ -28,7 +28,7 @@ function buildBoardHTML() {
         boardHTML += '<tr>';
         for (let x = 0; x < 9; x++) {
             boardHTML += '<td class="cell">';
-            boardHTML += '<input type="text">';
+            boardHTML += '<input type="number">';
             boardHTML += '</td>';
         }
         boardHTML += '</tr>';
