@@ -85,7 +85,7 @@ function setupControlListeners() {
 
 function onDifficultyChange() {
     if (window.confirm('Start new game?')) {
-        cellOpacityTransition(() => store.dispatch({ type: 'DIFFICULTY_CHANGE', value: this.value}));
+        cellOpacityTransition(() => store.dispatch({ type: 'NEW_GAME', value: this.value}));
     } else {
         this.value = store.getState().difficulty;
     }

@@ -15,7 +15,7 @@ function _sudokuStore(oldState = _initStore(), action) {
             }
             state.board[action.index].value = action.value;
             break;
-        case 'DIFFICULTY_CHANGE':
+        case 'NEW_GAME':
             state = _newGame(action.value);
             break;
     }
