@@ -1,4 +1,4 @@
-function updateConflicts(board) {
+export default function updateConflicts(board) {
     board.forEach(cell => {
         if (cell.class === 'conflict') {
             cell.class = 'normal';
@@ -42,7 +42,7 @@ function _markConflictsForBox(board, box) {
 function _markConflicts(cellSet) {
     const values = cellSet.map(c => c.value);
 
-    const conflicts = sudoku.DIGITS
+    const conflicts = '123456789'
         .split('')
         .filter(d => values.indexOf(d) !== values.lastIndexOf(d));
 

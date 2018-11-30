@@ -1,5 +1,11 @@
+import {createStore} from 'redux';
+import sudoku from './generator/sudoku';
+import updateConflicts from './conflicts';
+
+const store = createStore(_sudokuStore);
+
 const emptyCell = { class: 'normal', value: '' };
-const store = Redux.createStore(_sudokuStore);
+
 
 function _sudokuStore(oldState = _initStore(), action) {
     let state = JSON.parse(JSON.stringify(oldState));
@@ -37,3 +43,5 @@ function _newGame(difficulty) {
         .map(n => n === '.' ? emptyCell : { class: 'given', value: n });
     return state;
 }
+
+export default store;

@@ -1,3 +1,5 @@
+import store from './store';
+
 //  Set during init()
 let cells;
 let inputs;
