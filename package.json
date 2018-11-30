@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/wburklund/sudoku-web#readme",
   "devDependencies": {
-    "node-sass": "^4.10.0"
+    "node-sass": "^4.10.0",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "redux": "^4.0.1"
   }
 }
