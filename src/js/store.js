@@ -43,7 +43,7 @@ function sudokuStore(oldState = initStore(), action) {
     default:
       return state;
   }
-  updateConflicts(state.grid);
+  state.grid = updateConflicts(state.grid);
   localStorage.setItem('sudoku_saved_game', JSON.stringify(state));
   return state;
 }
