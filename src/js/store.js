@@ -1,6 +1,6 @@
 /*
-    Copyright (c) Will Burklund. All rights reserved. Licensed under the GPLv3 license. See LICENSE file
-    in the project root for full license information.
+    Copyright (c) Will Burklund. All rights reserved. Licensed under the GPLv3 license.
+    See LICENSE file in the project root for full license information.
 */
 
 import { createStore } from 'redux';
@@ -8,9 +8,22 @@ import sudoku from './generator/sudoku';
 import updateConflicts from './conflicts';
 
 const emptyCell = { class: 'normal', value: '' };
-const store = createStore(_sudokuStore);
 
-function _sudokuStore(oldState = _initStore(), action) {
+function newGame(difficulty) {
+  const state = {};
+  state.difficulty = difficulty;
+  state.grid = sudoku.generate(difficulty)
+    .split('')
+    .map(n => (n === '.' ? emptyCell : { class: 'given', value: n }));
+  return state;
+}
+
+function initStore() {
+  const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
+  return savedState || newGame('medium');
+}
+
+function sudokuStore(oldState = initStore(), action) {
   let state = JSON.parse(JSON.stringify(oldState));
 
   switch (action.type) {
@@ -25,26 +38,14 @@ function _sudokuStore(oldState = _initStore(), action) {
       state.grid[action.index].value = action.value;
       break;
     case 'NEW_GAME':
-      state = _newGame(action.value);
+      state = newGame(action.value);
       break;
+    default:
+      return state;
   }
   updateConflicts(state.grid);
   localStorage.setItem('sudoku_saved_game', JSON.stringify(state));
   return state;
 }
 
-function _initStore() {
-  const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
-  return savedState || _newGame('medium');
-}
-
-function _newGame(difficulty) {
-  const state = {};
-  state.difficulty = difficulty;
-  state.grid = sudoku.generate(difficulty)
-    .split('')
-    .map(n => (n === '.' ? emptyCell : { class: 'given', value: n }));
-  return state;
-}
-
-export default store;
+export default createStore(sudokuStore);
