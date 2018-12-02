@@ -3,40 +3,40 @@
     in the project root for full license information.
 */
 
-export default function updateConflicts(board) {
-    board.forEach(cell => {
+export default function updateConflicts(grid) {
+    grid.forEach(cell => {
         if (cell.class === 'conflict') {
             cell.class = 'normal';
         }
     });
     for (let i = 0; i < 9; i++) {
-        _markConflictsForRow(board, i);
-        _markConflictsForColumn(board, i);
-        _markConflictsForBox(board, i);
+        _markConflictsForRow(grid, i);
+        _markConflictsForColumn(grid, i);
+        _markConflictsForBox(grid, i);
     }
 }
 
-function _markConflictsForRow(board, row) {
+function _markConflictsForRow(grid, row) {
     const startCellIndex = 9 * row;
-    const cellRow = board.slice(startCellIndex, startCellIndex + 9);
+    const cellRow = grid.slice(startCellIndex, startCellIndex + 9);
     _markConflicts(cellRow);
 }
 
-function _markConflictsForColumn(board, column) {
+function _markConflictsForColumn(grid, column) {
     let cellColumn = [];
     for (let row = 0; row < 9; row++) {
-        cellColumn.push(board[9 * row + column]);
+        cellColumn.push(grid[9 * row + column]);
     }
     _markConflicts(cellColumn);
 }
 
-function _markConflictsForBox(board, box) {
+function _markConflictsForBox(grid, box) {
     const startRow = Math.floor(box / 3) * 3;
     const endRow = startRow + 2;
     const startColumn = (box * 3) % 9;
     const endColumn = startColumn + 2;
 
-    const cellBox = board.filter((cell, index) => {
+    const cellBox = grid.filter((cell, index) => {
         return index % 9 >= startRow && index % 9 <= endRow
             && Math.floor(index / 9) >= startColumn && Math.floor(index / 9) <= endColumn;
     });

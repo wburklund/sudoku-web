@@ -12,11 +12,11 @@ let inputs;
 init();
 
 function init() {
-    // Create the 'sudokuBoard' table
-    document.querySelector('#sudokuBoard').innerHTML = buildBoardHTML();
+    // Create the 'sudokuGrid' table
+    document.querySelector('#sudokuGrid').innerHTML = buildGridHTML();
 
     // Setup each cell
-    cells = [...document.querySelectorAll('#sudokuBoard td')];
+    cells = [...document.querySelectorAll('#sudokuGrid td')];
     cells.forEach((cell, index) => setupCell(cell, index));
 
     inputs = cells.map(cell => cell.childNodes[0]);
@@ -29,19 +29,19 @@ function init() {
     document.getElementById('i0').focus();
 }
 
-function buildBoardHTML() {
-    let boardHTML = '<tbody>';
+function buildGridHTML() {
+    let gridHTML = '<tbody>';
     for (let y = 0; y < 9; y++) {
-        boardHTML += '<tr>';
+        gridHTML += '<tr>';
         for (let x = 0; x < 9; x++) {
-            boardHTML += '<td class="cell">';
-            boardHTML += '<input type="number">';
-            boardHTML += '</td>';
+            gridHTML += '<td class="cell">';
+            gridHTML += '<input type="number">';
+            gridHTML += '</td>';
         }
-        boardHTML += '</tr>';
+        gridHTML += '</tr>';
     }
-    boardHTML += '</tbody>';
-    return boardHTML;
+    gridHTML += '</tbody>';
+    return gridHTML;
 }
 
 function setupCell(cell, index) {
@@ -100,20 +100,20 @@ function onDifficultyChange() {
 
 function render() {
     const state = store.getState();
-    const board = state.board;
+    const grid = state.grid;
 
     inputs.forEach((input, i) => {
-        input.value = board[i].value;
-        input.className = 'cell-input ' + board[i].class;
+        input.value = grid[i].value;
+        input.className = 'cell-input ' + grid[i].class;
     });
 
     document.getElementById('difficultySelect').value = state.difficulty;
 }
 
 function opacityTransition (func) {
-    document.getElementById('sudokuBoard').classList.add('invisible');
+    document.getElementById('sudokuGrid').classList.add('invisible');
     setTimeout(() => {
         func();
-        document.getElementById('sudokuBoard').classList.remove('invisible');
+        document.getElementById('sudokuGrid').classList.remove('invisible');
     }, 350);    // CSS .cell-input opacity transition time
 }

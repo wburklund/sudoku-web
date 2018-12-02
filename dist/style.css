@@ -77,5 +77,5 @@ tr td:nth-of-type(6) {
   .cell-input:focus {
     background-color: rgba(127, 255, 212, 0.2); }
 
-#sudokuBoard.invisible .cell-input {
+#sudokuGrid.invisible .cell-input {
   opacity: 0; }

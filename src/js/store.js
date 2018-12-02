@@ -15,20 +15,20 @@ function _sudokuStore(oldState = _initStore(), action) {
     
     switch (action.type) {
         case 'RESET_GAME':
-            state.board = state.board.map(cell => cell.class === 'given' ? cell : emptyCell);
+            state.grid = state.grid.map(cell => cell.class === 'given' ? cell : emptyCell);
             return state;
         case 'CELL_INPUT':
             if (!'123456789'.includes(action.value)
-            || state.board[action.index].class === 'given') {
+            || state.grid[action.index].class === 'given') {
                 return state;
             }
-            state.board[action.index].value = action.value;
+            state.grid[action.index].value = action.value;
             break;
         case 'NEW_GAME':
             state = _newGame(action.value);
             break;
     }
-    updateConflicts(state.board);
+    updateConflicts(state.grid);
     localStorage.setItem('sudoku_saved_game', JSON.stringify(state));
     return state;
 }
@@ -41,7 +41,7 @@ function _initStore() {
 function _newGame(difficulty) {
     let state = {};
     state.difficulty = difficulty;
-    state.board = sudoku.generate(difficulty)
+    state.grid = sudoku.generate(difficulty)
         .split('')
         .map(n => n === '.' ? emptyCell : { class: 'given', value: n });
     return state;
