@@ -3,7 +3,7 @@
     in the project root for full license information.
 */
 
-export default function updateConflicts(grid) {
+function updateConflicts(grid) {
     grid.forEach(cell => {
         if (cell.class === 'conflict') {
             cell.class = 'normal';
@@ -57,3 +57,5 @@ function _markConflicts(cellSet) {
         }
     });
 }
+
+export default updateConflicts;
