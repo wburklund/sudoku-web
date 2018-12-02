@@ -5,7 +5,8 @@
   "main": "game.js",
   "scripts": {
     "update-css": "node-sass src/sass/main.scss dist/style.css -w",
-    "build": "node-sass src/sass/main.scss dist/style.css && webpack"
+    "build": "node-sass src/sass/main.scss dist/style.css && webpack",
+    "lint": "eslint src/js"
   },
   "repository": {
     "type": "git",
