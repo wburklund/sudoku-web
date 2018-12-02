@@ -13,8 +13,10 @@ const markConflicts = (cellSet) => {
     .filter(d => values.indexOf(d) !== values.lastIndexOf(d));
 
   for (let i = 0; i < cellSet.length; i += 1) {
-    if (conflicts.includes(grid[cellSet[i]].value) && grid[cellSet[i]].class !== 'given') {
-      grid[cellSet[i]].class = 'conflict';
+    const thisCell = grid[cellSet[i]];
+    
+    if (conflicts.includes(thisCell.value) && thisCell.class !== 'given') {
+      thisCell.class = 'conflict';
     }
   }
 }
