@@ -1,6 +1,6 @@
 /*
-    Copyright (c) Will Burklund. All rights reserved. Licensed under the GPLv3 license. See LICENSE file
-    in the project root for full license information.
+    Copyright (c) Will Burklund. All rights reserved. Licensed under the GPLv3 license.
+    See LICENSE file in the project root for full license information.
 */
 
 import store from './store';
@@ -9,31 +9,19 @@ import store from './store';
 let cells;
 let inputs;
 
-init();
-
-function init() {
-  // Create the 'sudokuGrid' table
-  document.querySelector('#sudokuGrid').innerHTML = buildGridHTML();
-
-  // Setup each cell
-  cells = [...document.querySelectorAll('#sudokuGrid td')];
-  cells.forEach((cell, index) => setupCell(cell, index));
-
-  inputs = cells.map(cell => cell.childNodes[0]);
-
-  setupControlListeners();
-
-  render();
-  store.subscribe(render);
-
-  document.getElementById('i0').focus();
+function opacityTransition(func) {
+  document.getElementById('sudokuGrid').classList.add('invisible');
+  setTimeout(() => {
+    func();
+    document.getElementById('sudokuGrid').classList.remove('invisible');
+  }, 350); // CSS .cell-input opacity transition time
 }
 
 function buildGridHTML() {
   let gridHTML = '<tbody>';
-  for (let y = 0; y < 9; y++) {
+  for (let y = 0; y < 9; y += 1) {
     gridHTML += '<tr>';
-    for (let x = 0; x < 9; x++) {
+    for (let x = 0; x < 9; x += 1) {
       gridHTML += '<td class="cell">';
       gridHTML += '<input type="number">';
       gridHTML += '</td>';
@@ -42,14 +30,6 @@ function buildGridHTML() {
   }
   gridHTML += '</tbody>';
   return gridHTML;
-}
-
-function setupCell(cell, index) {
-  cell.id = `c${index}`;
-  // add id/listeners to child input
-  cell.childNodes[0].id = `i${index}`;
-  cell.childNodes[0].className = 'cell-input';
-  cell.childNodes[0].addEventListener('keydown', onInputKeydown); // navigation/deletes
 }
 
 function onInputKeydown(event) {
@@ -86,10 +66,6 @@ function onInputKeydown(event) {
   inputs[newIndex].focus();
 }
 
-function setupControlListeners() {
-  document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
-}
-
 function onDifficultyChange() {
   if (window.confirm('Start new game?')) {
     opacityTransition(() => store.dispatch({ type: 'NEW_GAME', value: this.value }));
@@ -98,22 +74,45 @@ function onDifficultyChange() {
   }
 }
 
+function setupControlListeners() {
+  document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
+}
+
 function render() {
   const state = store.getState();
-  const grid = state.grid;
+  const { grid } = state;
 
-  inputs.forEach((input, i) => {
-    input.value = grid[i].value;
-    input.className = `cell-input ${grid[i].class}`;
-  });
+  for (let i = 0; i < inputs.length; i += 1) {
+    inputs[i].value = grid[i].value;
+    inputs[i].className = `cell-input ${grid[i].class}`;
+  }
 
   document.getElementById('difficultySelect').value = state.difficulty;
 }
 
-function opacityTransition(func) {
-  document.getElementById('sudokuGrid').classList.add('invisible');
-  setTimeout(() => {
-    func();
-    document.getElementById('sudokuGrid').classList.remove('invisible');
-  }, 350); // CSS .cell-input opacity transition time
+function init() {
+  // Create the 'sudokuGrid' table
+  document.querySelector('#sudokuGrid').innerHTML = buildGridHTML();
+
+  // Setup each cell
+  cells = [...document.querySelectorAll('#sudokuGrid td')];
+
+  for (let i = 0; i < cells.length; i += 1) {
+    cells[i].id = `c${i}`;
+    // add id/listeners to child input
+    cells[i].childNodes[0].id = `i${i}`;
+    cells[i].childNodes[0].className = 'cell-input';
+    cells[i].childNodes[0].addEventListener('keydown', onInputKeydown); // navigation/deletes
+  }
+
+  inputs = cells.map(cell => cell.childNodes[0]);
+
+  setupControlListeners();
+
+  render();
+  store.subscribe(render);
+
+  document.getElementById('i0').focus();
 }
+
+init();
