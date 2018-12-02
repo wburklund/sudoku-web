@@ -9,7 +9,7 @@ import { onDifficultyChange, onInputKeydown } from './eventListeners';
 //  Set during init()
 let inputs;
 
-function buildGridHTML() {
+const buildGridHTML = () => {
   let gridHTML = '<tbody>';
   for (let y = 0; y < 9; y += 1) {
     gridHTML += '<tr>';
@@ -24,7 +24,7 @@ function buildGridHTML() {
   return gridHTML;
 }
 
-function render() {
+const render = () => {
   const state = store.getState();
   const { grid } = state;
 
@@ -36,7 +36,7 @@ function render() {
   document.getElementById('difficultySelect').value = state.difficulty;
 }
 
-function init() {
+const init = () => {
   // Create the 'sudokuGrid' table
   document.querySelector('#sudokuGrid').innerHTML = buildGridHTML();
 

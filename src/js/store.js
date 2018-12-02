@@ -9,7 +9,7 @@ import updateConflicts from './conflicts';
 
 const emptyCell = { class: 'normal', value: '' };
 
-function newGame(difficulty) {
+const newGame = (difficulty) => {
   const state = {};
   state.difficulty = difficulty;
   state.grid = sudoku.generate(difficulty)
@@ -18,12 +18,12 @@ function newGame(difficulty) {
   return state;
 }
 
-function initStore() {
+const initStore = () => {
   const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
   return savedState || newGame('medium');
 }
 
-function sudokuStore(oldState = initStore(), action) {
+const sudokuStore = (oldState = initStore(), action) => {
   let state = JSON.parse(JSON.stringify(oldState));
 
   switch (action.type) {

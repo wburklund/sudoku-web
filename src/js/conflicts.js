@@ -5,7 +5,7 @@
 
 let grid;
 
-function markConflicts(cellSet) {
+const markConflicts = (cellSet) => {
   const values = cellSet.map(c => grid[c].value);
 
   const conflicts = '123456789'
@@ -19,7 +19,7 @@ function markConflicts(cellSet) {
   }
 }
 
-function markConflictsForRow(row) {
+const markConflictsForRow = (row) => {
   const cellRow = [];
   for (let column = 0; column < 9; column += 1) {
     cellRow.push(9 * row + column);
@@ -27,7 +27,7 @@ function markConflictsForRow(row) {
   markConflicts(cellRow);
 }
 
-function markConflictsForColumn(column) {
+const markConflictsForColumn = (column) => {
   const cellColumn = [];
   for (let row = 0; row < 9; row += 1) {
     cellColumn.push(9 * row + column);
@@ -35,7 +35,7 @@ function markConflictsForColumn(column) {
   markConflicts(cellColumn);
 }
 
-function markConflictsForBox(box) {
+const markConflictsForBox = (box) => {
   const startRow = Math.floor(box / 3) * 3;
   const endRow = startRow + 2;
   const startColumn = (box * 3) % 9;
@@ -52,7 +52,7 @@ function markConflictsForBox(box) {
   markConflicts(cellBox);
 }
 
-function updateConflicts(inputGrid) {
+const updateConflicts = (inputGrid) => {
   grid = JSON.parse(JSON.stringify(inputGrid));
 
   for (let i = 0; i < grid.length; i += 1) {
