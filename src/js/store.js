@@ -1,3 +1,8 @@
+/*
+    Copyright (c) Will Burklund. All rights reserved. Licensed under the GPLv3 license. See LICENSE file
+    in the project root for full license information.
+*/
+
 import {createStore} from 'redux';
 import sudoku from './generator/sudoku';
 import updateConflicts from './conflicts';
