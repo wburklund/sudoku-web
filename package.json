@@ -4,7 +4,8 @@
   "description": "",
   "main": "game.js",
   "scripts": {
-    "compile-css": "node-sass src/sass/main.scss dist/style.css -w"
+    "update-css": "node-sass src/sass/main.scss dist/style.css -w",
+    "build": "node-sass src/sass/main.scss dist/style.css && webpack"
   },
   "repository": {
     "type": "git",
