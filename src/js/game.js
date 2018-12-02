@@ -22,7 +22,7 @@ const buildGridHTML = () => {
   }
   gridHTML += '</tbody>';
   return gridHTML;
-}
+};
 
 const render = () => {
   const state = store.getState();
@@ -34,7 +34,7 @@ const render = () => {
   }
 
   document.getElementById('difficultySelect').value = state.difficulty;
-}
+};
 
 const init = () => {
   // Create the 'sudokuGrid' table
@@ -59,6 +59,6 @@ const init = () => {
 
   document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
   document.getElementById('i0').focus();
-}
+};
 
 init();

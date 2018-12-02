@@ -14,12 +14,12 @@ const markConflicts = (cellSet) => {
 
   for (let i = 0; i < cellSet.length; i += 1) {
     const thisCell = grid[cellSet[i]];
-    
+
     if (conflicts.includes(thisCell.value) && thisCell.class !== 'given') {
       thisCell.class = 'conflict';
     }
   }
-}
+};
 
 const markConflictsForRow = (row) => {
   const cellRow = [];
@@ -27,7 +27,7 @@ const markConflictsForRow = (row) => {
     cellRow.push(9 * row + column);
   }
   markConflicts(cellRow);
-}
+};
 
 const markConflictsForColumn = (column) => {
   const cellColumn = [];
@@ -35,7 +35,7 @@ const markConflictsForColumn = (column) => {
     cellColumn.push(9 * row + column);
   }
   markConflicts(cellColumn);
-}
+};
 
 const markConflictsForBox = (box) => {
   const startRow = Math.floor(box / 3) * 3;
@@ -52,7 +52,7 @@ const markConflictsForBox = (box) => {
   }
 
   markConflicts(cellBox);
-}
+};
 
 const updateConflicts = (inputGrid) => {
   grid = JSON.parse(JSON.stringify(inputGrid));
@@ -69,6 +69,6 @@ const updateConflicts = (inputGrid) => {
     markConflictsForBox(i);
   }
   return grid;
-}
+};
 
 export default updateConflicts;

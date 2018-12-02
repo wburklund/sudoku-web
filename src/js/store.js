@@ -16,12 +16,12 @@ const newGame = (difficulty) => {
     .split('')
     .map(n => (n === '.' ? emptyCell : { class: 'given', value: n }));
   return state;
-}
+};
 
 const initStore = () => {
   const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
   return savedState || newGame('medium');
-}
+};
 
 const sudokuStore = (oldState = initStore(), action) => {
   let state = JSON.parse(JSON.stringify(oldState));
@@ -46,6 +46,6 @@ const sudokuStore = (oldState = initStore(), action) => {
   state.grid = updateConflicts(state.grid);
   localStorage.setItem('sudoku_saved_game', JSON.stringify(state));
   return state;
-}
+};
 
 export default createStore(sudokuStore);
