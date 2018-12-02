@@ -7,7 +7,6 @@ import store from './store';
 import { onDifficultyChange, onInputKeydown } from './eventListeners';
 
 //  Set during init()
-let cells;
 let inputs;
 
 function buildGridHTML() {
@@ -23,10 +22,6 @@ function buildGridHTML() {
   }
   gridHTML += '</tbody>';
   return gridHTML;
-}
-
-function setupControlListeners() {
-  document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
 }
 
 function render() {
@@ -46,7 +41,7 @@ function init() {
   document.querySelector('#sudokuGrid').innerHTML = buildGridHTML();
 
   // Setup each cell
-  cells = [...document.querySelectorAll('#sudokuGrid td')];
+  const cells = [...document.querySelectorAll('#sudokuGrid td')];
 
   for (let i = 0; i < cells.length; i += 1) {
     cells[i].id = `c${i}`;
@@ -58,11 +53,11 @@ function init() {
 
   inputs = cells.map(cell => cell.childNodes[0]);
 
-  setupControlListeners();
 
   render();
   store.subscribe(render);
 
+  document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
   document.getElementById('i0').focus();
 }
 
