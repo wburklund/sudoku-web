@@ -26,7 +26,7 @@ const buildGridHTML = () => {
 
 const render = () => {
   const state = store.getState();
-  const { grid } = state;
+  const { grid, difficulty } = state;
 
   for (let i = 0; i < inputs.length; i += 1) {
     inputs[i].value = grid[i].value;
@@ -34,6 +34,11 @@ const render = () => {
   }
 
   document.getElementById('difficultySelect').value = state.difficulty;
+
+  if (inputs.every(input => input.value !== '' && input.class !== 'conflict')) {
+    alert("Congratulations! You won!");
+    store.dispatch({ type: 'NEW_GAME', value: difficulty });
+  }
 };
 
 const init = () => {
