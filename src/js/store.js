@@ -23,7 +23,7 @@ const initStore = () => {
   return savedState || newGame('medium');
 };
 
-const sudokuStore = (oldState, action) => {
+const reducer = (oldState, action) => {
   let state = JSON.parse(JSON.stringify(oldState));
 
   switch (action.type) {
@@ -48,4 +48,4 @@ const sudokuStore = (oldState, action) => {
   return state;
 };
 
-export default createStore(sudokuStore, initStore());
+export default createStore(reducer, initStore());
