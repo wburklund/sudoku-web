@@ -36,7 +36,7 @@ const render = () => {
   document.getElementById('difficultySelect').value = state.difficulty;
 
   if (inputs.every(input => input.value !== '' && input.class !== 'conflict')) {
-    alert("Congratulations! You won!");
+    alert('Congratulations! You won!');
     store.dispatch({ type: 'NEW_GAME', value: difficulty });
   }
 };
