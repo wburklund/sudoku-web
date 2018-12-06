@@ -21,7 +21,7 @@ const buildGridHTML = () => {
 };
 
 const buildCellHTML = () => {
-  let cellHTML = '<input type="number">';
+  let cellHTML = '<input type="number" class="cell-input">';
   cellHTML += '<div class="cell-notes">';
 
   for (let i = 1; i < 10; i += 1) {

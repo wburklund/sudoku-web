@@ -73,6 +73,14 @@ tr td:nth-of-type(6) {
     border: $border-inner;
     background-color: transparent;
     position: relative;
+
+    &.normal .cell-input {
+        color: navy;
+    }
+
+    &.conflict .cell-input {
+        color: red;
+    }
 }
 
 .cell-input {
@@ -92,13 +100,6 @@ tr td:nth-of-type(6) {
         -webkit-appearance: none;
     }
 
-    &.normal {
-        color: navy;
-    }
-
-    &.conflict {
-        color: red;
-    }
     &:focus {
         background-color: rgba(127, 255, 212, 0.2);
     }

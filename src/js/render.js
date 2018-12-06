@@ -17,9 +17,9 @@ const render = () => {
   const state = store.getState();
   const { grid, difficulty } = state;
 
-  for (let i = 0; i < inputs.length; i += 1) {
+  for (let i = 0; i < cells.length; i += 1) {
+    cells[i].className = `cell ${grid[i].class}`;
     inputs[i].value = grid[i].value;
-    inputs[i].className = `cell-input ${grid[i].class}`;
   }
 
   document.getElementById('difficultySelect').value = state.difficulty;
