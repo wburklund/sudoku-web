@@ -5,9 +5,7 @@
 
 import store from './store';
 import { onDifficultyChange, onInputKeydown } from './eventListeners';
-
-//  Set during init()
-let inputs;
+import render from './render';
 
 const buildGridHTML = () => {
   let gridHTML = '<tbody>';
@@ -24,23 +22,6 @@ const buildGridHTML = () => {
   return gridHTML;
 };
 
-const render = () => {
-  const state = store.getState();
-  const { grid, difficulty } = state;
-
-  for (let i = 0; i < inputs.length; i += 1) {
-    inputs[i].value = grid[i].value;
-    inputs[i].className = `cell-input ${grid[i].class}`;
-  }
-
-  document.getElementById('difficultySelect').value = state.difficulty;
-
-  if (inputs.every(input => input.value !== '' && input.class !== 'conflict')) {
-    alert('Congratulations! You won!');
-    store.dispatch({ type: 'NEW_GAME', value: difficulty });
-  }
-};
-
 const init = () => {
   // Create the 'sudokuGrid' table
   document.querySelector('#sudokuGrid').innerHTML = buildGridHTML();
@@ -55,9 +36,6 @@ const init = () => {
     cells[i].childNodes[0].className = 'cell-input';
     cells[i].childNodes[0].addEventListener('keydown', onInputKeydown); // navigation/deletes
   }
-
-  inputs = cells.map(cell => cell.childNodes[0]);
-
 
   render();
   store.subscribe(render);
