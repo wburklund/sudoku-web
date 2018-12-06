@@ -72,6 +72,7 @@ tr td:nth-of-type(6) {
 .cell {
     border: $border-inner;
     background-color: transparent;
+    position: relative;
 }
 
 .cell-input {
@@ -100,6 +101,26 @@ tr td:nth-of-type(6) {
     }
     &:focus {
         background-color: rgba(127, 255, 212, 0.2);
+    }
+}
+
+.cell-notes {
+    position: absolute;
+    top: 0rem;
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    color: transparent;
+
+    p {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .visible {
+        color: navy;
     }
 }
 
