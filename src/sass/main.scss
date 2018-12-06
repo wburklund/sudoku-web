@@ -107,6 +107,7 @@ tr td:nth-of-type(6) {
 
 .cell-notes {
     position: absolute;
+    z-index: -1;
     top: 0rem;
     height: 5rem;
     width: 5rem;
