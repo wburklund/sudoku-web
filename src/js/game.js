@@ -4,7 +4,7 @@
 */
 
 import store from './store';
-import { onDifficultyChange, onInputKeydown } from './eventListeners';
+import { onDifficultyChange, onInputKeydown, onReset } from './eventListeners';
 import render from './render';
 
 const buildGridHTML = () => {
@@ -59,6 +59,7 @@ const init = () => {
   render();
   store.subscribe(render);
 
+  document.getElementsByClassName('resetButton')[0].addEventListener('click', onReset);
   document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
   document.getElementById('i0').focus();
 };

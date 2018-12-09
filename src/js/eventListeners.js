@@ -12,6 +12,10 @@ const opacityTransition = (func) => {
   }, 350); // CSS .cell-input opacity transition time
 };
 
+export const onReset = () => {
+  store.dispatch({ type: 'RESET_GAME' });
+};
+
 export function onInputKeydown(event) {
   event.preventDefault();
   // index comes from input id in the form 'i#'
