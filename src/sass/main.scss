@@ -19,6 +19,24 @@ body {
     text-align: center;
 }
 
+button {
+    color: white;
+    background-color: darkgray;
+    border: none;
+    border-radius: .4rem;
+    text-shadow: 0 .1rem .1rem rgba(0, 0, 0, 0.2);
+    padding: .3rem;
+    outline-width: 0;
+
+    &:hover {
+        color: rgb(240, 240, 240);
+    }
+
+    &:active {
+        color: rgb(15, 15, 15);
+    }
+}
+
 .heading {
     margin: 1rem auto 0 auto;
     width: 47rem;
@@ -43,16 +61,6 @@ body {
 
         .resetButton {
             background-color: rgb(202, 60, 60);
-            color: white;
-            border: none;
-            border-radius: .4rem;
-            text-shadow: 0 .1rem .1rem rgba(0, 0, 0, 0.2);
-            padding: 0.3rem;
-            outline-width: 0;
-
-            &:active {
-                color: black;
-            }
         }
 
         select {
