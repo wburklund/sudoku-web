@@ -9,9 +9,12 @@
 </head>
 
 <body>
-	<div class="header">
-		<h1>Sudoku</h1>
-		<span class="difficultyDisplay">
+	<header class="heading">
+		<div class="heading-primary">
+			<h1>Sudoku</h1>
+		</div>
+		<div class="heading-sub">
+			<label for="difficultySelect">Difficulty: </label>
 			<select name="difficulty" id="difficultySelect" title="Select Difficulty">
 				<option value="easy">&#9733&#9734&#9734&#9734&#9734</option>
 				<option value="medium" selected>&#9733&#9733&#9734&#9734&#9734</option>
@@ -19,8 +22,8 @@
 				<option value="very-hard">&#9733&#9733&#9733&#9733&#9734</option>
 				<option value="insane">&#9733&#9733&#9733&#9733&#9733</option>
 			</select>
-		</span>
-	</div>
+		</div>
+	</header>
 
 	<table id="sudokuGrid"></table>
 
