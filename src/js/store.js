@@ -29,7 +29,7 @@ const reducer = (oldState, action) => {
   switch (action.type) {
     case 'RESET_GAME':
       state.grid = state.grid.map(cell => (cell.class === 'given' ? cell : emptyCell));
-      return state;
+      break;
     case 'CELL_INPUT':
       if (!'123456789'.includes(action.value)
             || state.grid[action.index].class === 'given') {
