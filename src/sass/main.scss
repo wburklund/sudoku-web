@@ -53,26 +53,31 @@ body {
     }
 }
 
-table {
+#sudokuGrid {
     margin: auto;
     border: $border-outer;
     border-collapse: collapse;
-}
 
-tr:nth-of-type(3) td,
-tr:nth-of-type(6) td {
-    border-bottom: $border-box;
-}
+    tr:nth-of-type(3) td,
+    tr:nth-of-type(6) td {
+        border-bottom: $border-box;
+    }
 
-tr td:nth-of-type(3),
-tr td:nth-of-type(6) {
-    border-right: $border-box;
+    tr td:nth-of-type(3),
+    tr td:nth-of-type(6) {
+        border-right: $border-box;
+    }
+
+    &.invisible .cell {
+        opacity: 0;
+    }
 }
 
 .cell {
     border: $border-inner;
     background-color: transparent;
     position: relative;
+    transition: opacity 0.35s;
 
     &.normal .cell-input {
         color: navy;
@@ -91,7 +96,7 @@ tr td:nth-of-type(6) {
     font-size: 4rem;
     outline-width: 0;
     background-color: transparent;
-    transition: color 0.4s, opacity 0.35s;
+    transition: color 0.4s;
     caret-color: transparent;
     -moz-appearance:textfield;
 
@@ -124,8 +129,4 @@ tr td:nth-of-type(6) {
     .visible {
         color: navy;
     }
-}
-
-#sudokuGrid.invisible .cell-input {
-    opacity: 0;
 }
