@@ -58,6 +58,9 @@ button {
         height: 2.8rem;
         border-left: $border-outer;
         border-right: $border-outer;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
 
         .resetButton {
             background-color: rgb(202, 60, 60);
