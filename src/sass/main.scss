@@ -60,18 +60,16 @@ button {
         justify-content: space-around;
         align-items: center;
 
-        .heading-sub-buttons {
-            button {
-                margin: 0 .5rem;
-            }
+        button {
+            margin: 0 .5rem;
+        }
 
-            .resetButton {
-                background-color: rgb(202, 60, 60);
-            }
+        .resetButton {
+            background-color: rgb(202, 60, 60);
+        }
     
-            .notesButton.enabled {
-                background-color: rgb(66, 184, 221);
-            }
+        .notesButton.enabled {
+            background-color: rgb(66, 184, 221);
         }
 
 
