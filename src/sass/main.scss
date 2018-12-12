@@ -56,19 +56,24 @@ button {
     .heading-sub {
         font-size: 1.5rem;
         height: 2.8rem;
-        border: $border-outer;
-        border-top: none;
         display: flex;
         justify-content: space-around;
         align-items: center;
 
-        .resetButton {
-            background-color: rgb(202, 60, 60);
+        .heading-sub-buttons {
+            button {
+                margin: 0 .5rem;
+            }
+
+            .resetButton {
+                background-color: rgb(202, 60, 60);
+            }
+    
+            .notesButton {
+                background-color: rgb(66, 184, 221);
+            }
         }
 
-        .notesButton {
-            background-color: rgb(66, 184, 221);
-        }
 
         select {
             font-size: 1.5rem;
