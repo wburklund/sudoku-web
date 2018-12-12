@@ -38,7 +38,7 @@ button {
 }
 
 .heading {
-    margin: 1rem auto 0 auto;
+    margin: 1rem auto 2rem auto;
     width: 47rem;
     
     .heading-primary {
@@ -56,8 +56,8 @@ button {
     .heading-sub {
         font-size: 1.5rem;
         height: 2.8rem;
-        border-left: $border-outer;
-        border-right: $border-outer;
+        border: $border-outer;
+        border-top: none;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -71,7 +71,7 @@ button {
             width: 6.65rem;
             background-color: transparent;
             outline-width: 0;
-            border: .2rem solid rgb(225, 225, 225);
+            border: none;
             border-radius: 0.5rem;
             -webkit-appearance: none;
             -moz-appearance: none;   
