@@ -1,31 +1,22 @@
 import sudoku from './generator/sudoku';
-import updateConflicts from './conflicts';
+import { deepCopyState, updateGame } from './state';
 
 const emptyCell = { type: 'normal', value: '' };
 
-const stateUpdate = (oldState, func) => {
-  let newState = JSON.parse(JSON.stringify(oldState));
-
-  newState = func(newState);
-  newState.grid = updateConflicts(newState.grid);
-
-  localStorage.setItem('sudoku_saved_game', JSON.stringify(newState));
-  return newState;
-};
-
-export const newGame = (oldState, difficulty) => stateUpdate(oldState, () => {
+export const newGame = (difficulty) => {
   const state = {};
   state.difficulty = difficulty;
   state.grid = sudoku.generate(difficulty)
     .split('')
-    .map(n => (n === '.' ? emptyCell : { type: 'given', value: n }));
-  return state;
-});
+    .map(n => (n === '.' ? emptyCell : { type: 'given', value: n }))
+  return updateGame(state);
+};
 
-export const resetGame = oldState => stateUpdate(oldState, (state) => {
-  state.grid = state.grid.map(cell => (cell.type === 'given' ? cell : emptyCell));
-  return state;
-});
+export const resetGame = oldState => {
+  const newState = deepCopyState(oldState);
+  newState.grid = newState.grid.map(cell => (cell.type === 'given' ? cell : emptyCell));
+  return updateGame(newState);
+}
 
 export const cellInput = (oldState, action) => {
   const isNote = action.type === 'CELL_NOTE';
@@ -37,21 +28,22 @@ export const cellInput = (oldState, action) => {
     return oldState;
   }
 
+  const newState = deepCopyState(oldState);
+  const updateCell = newState.grid[action.index];
+
   if (!isNote) {
-    return stateUpdate(oldState, (state) => {
-      const updateCell = state.grid[action.index];
-      updateCell.type = 'normal';
-      updateCell.value = action.value;
-      return state;
-    });
-  }
-  return stateUpdate(oldState, (state) => {
-    const updateCell = state.grid[action.index];
+    // We might be changing back from notes, so set the type explicitly
+    updateCell.type = 'normal';
+    updateCell.value = action.value;
+  } else {
+    // If we're changing to notes, start with an empty array
     if (updateCell.type !== 'notes') {
       updateCell.type = 'notes';
       updateCell.value = [];
     }
+
     updateCell.value[action.value - 1] = !updateCell.value[action.value - 1];
-    return state;
-  });
+  }
+
+  return updateGame(newState);
 };

@@ -8,13 +8,13 @@ import * as reducers from './reducers';
 
 const initStore = () => {
   const savedState = JSON.parse(localStorage.getItem('sudoku_saved_game'));
-  return savedState || reducers.newGame(undefined, 'medium');
+  return savedState || reducers.newGame('medium');
 };
 
 const rootReducer = (oldState, action) => {
   switch (action.type) {
     case 'NEW_GAME':
-      return reducers.newGame(oldState, action.value);
+      return reducers.newGame(action.value);
     case 'RESET_GAME':
       return reducers.resetGame(oldState);
     case 'CELL_NOTE':
