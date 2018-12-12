@@ -3,7 +3,7 @@
     See LICENSE file in the project root for full license information.
 */
 
-import store from './store';
+import store from './store/store';
 
 let cells;
 let inputs;

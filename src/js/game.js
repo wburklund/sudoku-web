@@ -3,7 +3,7 @@
     See LICENSE file in the project root for full license information.
 */
 
-import store from './store';
+import store from './store/store';
 import {
   onDifficultyChange, onInputKeydown, onReset, onToggleNotes,
 } from './eventListeners';

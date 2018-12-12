@@ -3,7 +3,7 @@
     See LICENSE file in the project root for full license information.
 */
 
-import sudoku from './generator/sudoku';
+import sudoku from '../generator/sudoku';
 import { deepCopyState, updateGame } from './state';
 
 const emptyCell = { type: 'normal', value: '' };
