@@ -15,6 +15,6 @@ As you make changes to the Sudoku grid, the game is saved continually. Whenever 
 
 Player entries that directly conflict with other entries on the board are colored red. The color changes gradually to discourage blind guessing, but you are still made aware of clear mistakes.
 
-**Notes (Not Yet Available)**
+**Notes**
 
-Coming soon, you will be able to take notes in a cell. This will make it easier to keep track of which numbers are possible within a cell.
+Mark down possibilities for numbers within a cell. This is a necessity for solving harder puzzles.

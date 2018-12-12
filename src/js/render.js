@@ -19,7 +19,15 @@ const render = () => {
 
   for (let i = 0; i < cells.length; i += 1) {
     cells[i].className = `cell ${grid[i].class}`;
-    inputs[i].value = grid[i].value;
+    if (grid[i].class === 'notes') {
+      const noteSpans = document.querySelectorAll(`#c${i} .cell-notes span`);
+      console.log(noteSpans);
+      for (let j = 0; j < 9; j++) {
+        noteSpans[j].classList = grid[i].value[j] ? 'visible' : '';
+      }
+    } else {
+      inputs[i].value = grid[i].value;
+    }
   }
 
   document.getElementById('difficultySelect').value = state.difficulty;

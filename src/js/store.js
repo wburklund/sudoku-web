@@ -26,9 +26,8 @@ const initStore = () => {
 const reducer = (oldState, action) => {
   let state = JSON.parse(JSON.stringify(oldState));
 
-
   // TODO: Refactor
-  
+
   let thisCell;
   switch (action.type) {
     case 'RESET_GAME':
@@ -49,7 +48,8 @@ const reducer = (oldState, action) => {
           return state;
       }
       if (thisCell.class !== 'notes') {
-        thisCell = { class: 'notes', value: [] };
+        thisCell.class = 'notes';
+        thisCell.value = [];
       }
       thisCell.value[action.value - 1] = !thisCell.value[action.value - 1];
       break;

@@ -33,7 +33,7 @@ button {
     }
 
     &:active {
-        color: rgb(15, 15, 15);
+        color: rgb(45, 45, 45);
     }
 }
 
@@ -64,6 +64,10 @@ button {
 
         .resetButton {
             background-color: rgb(202, 60, 60);
+        }
+
+        .notesButton {
+            background-color: rgb(66, 184, 221);
         }
 
         select {
@@ -112,6 +116,10 @@ button {
     &.conflict .cell-input {
         color: red;
     }
+
+    &.notes .cell-notes .visible {
+        color:navy;
+    }
 }
 
 .cell-input {
@@ -150,9 +158,5 @@ button {
     p {
         display: flex;
         justify-content: space-around;
-    }
-
-    .visible {
-        color: navy;
     }
 }
