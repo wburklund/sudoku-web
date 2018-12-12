@@ -26,16 +26,32 @@ const initStore = () => {
 const reducer = (oldState, action) => {
   let state = JSON.parse(JSON.stringify(oldState));
 
+
+  // TODO: Refactor
+  
+  let thisCell;
   switch (action.type) {
     case 'RESET_GAME':
       state.grid = state.grid.map(cell => (cell.class === 'given' ? cell : emptyCell));
       break;
     case 'CELL_INPUT':
+      thisCell = state.grid[action.index];
       if (!'123456789'.includes(action.value)
-            || state.grid[action.index].class === 'given') {
+            || thisCell.class === 'given') {
         return state;
       }
-      state.grid[action.index].value = action.value;
+      thisCell.value = action.value;
+      break;
+    case 'CELL_NOTE':
+      thisCell = state.grid[action.index];
+      if (!'123456789'.includes(action.value)
+      || (thisCell.class !== 'notes' && thisCell.value !== '')) {
+          return state;
+      }
+      if (thisCell.class !== 'notes') {
+        thisCell = { class: 'notes', value: [] };
+      }
+      thisCell.value[action.value - 1] = !thisCell.value[action.value - 1];
       break;
     case 'NEW_GAME':
       state = newGame(action.value);
