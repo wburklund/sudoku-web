@@ -20,6 +20,8 @@ const rootReducer = (oldState, action) => {
     case 'CELL_NOTE':
     case 'CELL_INPUT':
       return reducers.cellInput(oldState, action);
+    case 'CELL_HINT':
+      return reducers.cellHint(oldState, action.index);
     default:
       return oldState;
   }

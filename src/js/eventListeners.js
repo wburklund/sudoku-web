@@ -5,6 +5,7 @@
 import store from './store/store';
 
 let enableNotes = false;
+let wantsHint = false;
 
 const opacityTransition = (func) => {
   document.getElementById('sudokuGrid').classList.add('invisible');
@@ -14,11 +15,14 @@ const opacityTransition = (func) => {
   }, 350); // CSS .cell-input opacity transition time
 };
 
-export const onReset = () => {
-  store.dispatch({ type: 'RESET_GAME' });
+export const onResetClick = () => store.dispatch({ type: 'RESET_GAME' });
+
+export function onHintClick() {
+  wantsHint = !wantsHint;
+  wantsHint ? this.classList.add('enabled') : this.classList.remove('enabled');
 };
 
-export function onToggleNotes() {
+export function onNotesClick() {
   enableNotes = !enableNotes;
   this.classList.toggle('enabled');
 }
@@ -55,6 +59,14 @@ export function onInputKeydown(event) {
   }
 
   document.getElementsByClassName('cell-input')[newIndex].focus();
+}
+
+export function onInputClick(event) {
+  if (wantsHint) {
+    wantsHint = false;
+    document.getElementsByClassName('hintButton')[0].classList.remove('enabled');
+    store.dispatch({ type: 'CELL_HINT', index: Number(this.id.slice(1)) });
+  }
 }
 
 export function onDifficultyChange() {

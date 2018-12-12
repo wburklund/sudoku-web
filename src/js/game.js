@@ -5,7 +5,7 @@
 
 import store from './store/store';
 import {
-  onDifficultyChange, onInputKeydown, onReset, onToggleNotes,
+  onDifficultyChange, onInputKeydown, onResetClick, onHintClick, onNotesClick, onInputClick,
 } from './eventListeners';
 import render from './render';
 
@@ -56,13 +56,15 @@ const init = () => {
     cells[i].childNodes[0].id = `i${i}`;
     cells[i].childNodes[0].className = 'cell-input';
     cells[i].childNodes[0].addEventListener('keydown', onInputKeydown);
+    cells[i].childNodes[0].addEventListener('click', onInputClick);
   }
 
   render();
   store.subscribe(render);
 
-  document.getElementsByClassName('resetButton')[0].addEventListener('click', onReset);
-  document.getElementsByClassName('notesButton')[0].addEventListener('click', onToggleNotes);
+  document.getElementsByClassName('resetButton')[0].addEventListener('click', onResetClick);
+  document.getElementsByClassName('hintButton')[0].addEventListener('click', onHintClick);
+  document.getElementsByClassName('notesButton')[0].addEventListener('click', onNotesClick);
   document.getElementById('difficultySelect').addEventListener('change', onDifficultyChange);
   document.getElementById('i0').focus();
 };

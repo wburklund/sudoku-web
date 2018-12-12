@@ -68,7 +68,8 @@ button {
             background-color: rgb(202, 60, 60);
         }
     
-        .notesButton.enabled {
+        .notesButton.enabled,
+        .hintButton.enabled {
             background-color: rgb(66, 184, 221);
         }
 
