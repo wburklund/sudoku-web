@@ -3,7 +3,7 @@
     See LICENSE file in the project root for full license information.
 */
 
-import { deepCopyGrid } from "./state";
+import { deepCopyGrid } from './state';
 
 let grid;
 

@@ -3,13 +3,6 @@
     See LICENSE file in the project root for full license information.
 */
 
-import updateConflicts from './conflicts';
-
-export const deepCopyState = (oldState) => {
-  const { difficulty, grid } = oldState;
-  return { difficulty, grid: deepCopyGrid(grid) };
-};
-
 export const deepCopyGrid = (oldGrid) => {
   const newGrid = Array(oldGrid.length);
 
@@ -26,10 +19,7 @@ export const deepCopyGrid = (oldGrid) => {
   return newGrid;
 };
 
-export const updateGame = (oldState) => {
+export const deepCopyState = (oldState) => {
   const { difficulty, grid } = oldState;
-  const newState = { difficulty, grid: updateConflicts(grid) };
-
-  localStorage.setItem('sudoku_saved_game', JSON.stringify(newState));
-  return newState;
+  return { difficulty, grid: deepCopyGrid(grid) };
 };

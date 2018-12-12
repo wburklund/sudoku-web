@@ -4,7 +4,8 @@
 */
 
 import sudoku from '../generator/sudoku';
-import { deepCopyState, updateGame } from './state';
+import { deepCopyState } from './state';
+import updateGame from './update';
 
 const emptyCell = { type: 'normal', value: '' };
 
@@ -13,15 +14,15 @@ export const newGame = (difficulty) => {
   state.difficulty = difficulty;
   state.grid = sudoku.generate(difficulty)
     .split('')
-    .map(n => (n === '.' ? emptyCell : { type: 'given', value: n }))
+    .map(n => (n === '.' ? emptyCell : { type: 'given', value: n }));
   return updateGame(state);
 };
 
-export const resetGame = oldState => {
+export const resetGame = (oldState) => {
   const newState = deepCopyState(oldState);
   newState.grid = newState.grid.map(cell => (cell.type === 'given' ? cell : emptyCell));
   return updateGame(newState);
-}
+};
 
 export const cellInput = (oldState, action) => {
   const isNote = action.type === 'CELL_NOTE';
