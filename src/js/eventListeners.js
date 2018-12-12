@@ -18,9 +18,10 @@ export const onReset = () => {
   store.dispatch({ type: 'RESET_GAME' });
 };
 
-export const onToggleNotes = () => {
+export function onToggleNotes() {
   enableNotes = !enableNotes;
-};
+  this.classList.toggle('enabled');
+}
 
 export function onInputKeydown(event) {
   event.preventDefault();
