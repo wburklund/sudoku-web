@@ -17,20 +17,21 @@ const opacityTransition = (func) => {
 
 export const onResetClick = () => store.dispatch({ type: 'RESET_GAME' });
 
-export function onHintClick() {
+export const onHintClick = (event) => {
+  const button = event.target;
   wantsHint = !wantsHint;
-  wantsHint ? this.classList.add('enabled') : this.classList.remove('enabled');
+  wantsHint ? button.classList.add('enabled') : button.classList.remove('enabled');
 };
 
-export function onNotesClick() {
+export const onNotesClick = (event) => {
   enableNotes = !enableNotes;
-  this.classList.toggle('enabled');
+  event.target.classList.toggle('enabled');
 }
 
-export function onInputKeydown(event) {
+export const onInputKeydown = (event) => {
   event.preventDefault();
   // index comes from input id in the form 'i#'
-  const index = Number(this.id.slice(1));
+  const index = Number(event.target.id.slice(1));
   const x = index % 9;
   const y = Math.floor(index / 9);
 
@@ -54,25 +55,27 @@ export function onInputKeydown(event) {
       store.dispatch({ type: 'CELL_INPUT', index, value: '' });
       return;
     default:
-      store.dispatch({ type: enableNotes ? 'CELL_NOTE' : 'CELL_INPUT', index: Number(this.id.slice(1)), value: event.key });
+      store.dispatch({ type: enableNotes ? 'CELL_NOTE' : 'CELL_INPUT', index, value: event.key });
       return;
   }
 
   document.getElementsByClassName('cell-input')[newIndex].focus();
 }
 
-export function onInputClick(event) {
+export const onInputClick = (event) => {
   if (wantsHint) {
+    const index = Number(event.target.id.slice(1));
     wantsHint = false;
     document.getElementsByClassName('hintButton')[0].classList.remove('enabled');
-    store.dispatch({ type: 'CELL_HINT', index: Number(this.id.slice(1)) });
+    store.dispatch({ type: 'CELL_HINT', index });
   }
 }
 
-export function onDifficultyChange() {
+export const onDifficultyChange = (event) => {
+  const select = event.target;
   if (window.confirm('Start new game?')) {
-    opacityTransition(() => store.dispatch({ type: 'NEW_GAME', value: this.value }));
+    opacityTransition(() => store.dispatch({ type: 'NEW_GAME', value: select.value }));
   } else {
-    this.value = store.getState().difficulty;
+    select.value = store.getState().difficulty;
   }
 }
