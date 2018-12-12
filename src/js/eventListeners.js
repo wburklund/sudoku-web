@@ -4,6 +4,8 @@
 */
 import store from './store';
 
+let enableNotes = false;
+
 const opacityTransition = (func) => {
   document.getElementById('sudokuGrid').classList.add('invisible');
   setTimeout(() => {
@@ -14,6 +16,10 @@ const opacityTransition = (func) => {
 
 export const onReset = () => {
   store.dispatch({ type: 'RESET_GAME' });
+};
+
+export const onToggleNotes = () => {
+  enableNotes = !enableNotes;
 };
 
 export function onInputKeydown(event) {
@@ -43,7 +49,7 @@ export function onInputKeydown(event) {
       store.dispatch({ type: 'CELL_INPUT', index, value: '' });
       return;
     default:
-      store.dispatch({ type: 'CELL_INPUT', index: Number(this.id.slice(1)), value: event.key });
+      store.dispatch({ type: enableNotes ? 'CELL_NOTE' : 'CELL_INPUT', index: Number(this.id.slice(1)), value: event.key });
       return;
   }
 
