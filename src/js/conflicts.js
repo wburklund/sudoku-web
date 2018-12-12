@@ -15,8 +15,8 @@ const markConflicts = (cellSet) => {
   for (let i = 0; i < cellSet.length; i += 1) {
     const thisCell = grid[cellSet[i]];
 
-    if (conflicts.includes(thisCell.value) && thisCell.class !== 'given') {
-      thisCell.class = 'conflict';
+    if (conflicts.includes(thisCell.value) && thisCell.type !== 'given') {
+      thisCell.type = 'conflict';
     }
   }
 };
@@ -58,8 +58,8 @@ const updateConflicts = (inputGrid) => {
   grid = JSON.parse(JSON.stringify(inputGrid));
 
   for (let i = 0; i < grid.length; i += 1) {
-    if (grid[i].class === 'conflict') {
-      grid[i].class = 'normal';
+    if (grid[i].type === 'conflict') {
+      grid[i].type = 'normal';
     }
   }
 
