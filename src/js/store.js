@@ -39,6 +39,7 @@ const reducer = (oldState, action) => {
             || thisCell.class === 'given') {
         return state;
       }
+      thisCell.class = 'normal';
       thisCell.value = action.value;
       break;
     case 'CELL_NOTE':
