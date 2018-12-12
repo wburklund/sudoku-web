@@ -4,7 +4,9 @@
 */
 
 import store from './store';
-import { onDifficultyChange, onInputKeydown, onReset, onToggleNotes } from './eventListeners';
+import {
+  onDifficultyChange, onInputKeydown, onReset, onToggleNotes,
+} from './eventListeners';
 import render from './render';
 
 const buildGridHTML = () => {

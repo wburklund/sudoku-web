@@ -21,7 +21,7 @@ const render = () => {
     cells[i].className = `cell ${grid[i].class}`;
     if (grid[i].class === 'notes') {
       const noteSpans = document.querySelectorAll(`#c${i} .cell-notes span`);
-      for (let j = 0; j < 9; j++) {
+      for (let j = 0; j < 9; j += 1) {
         noteSpans[j].classList = grid[i].value[j] ? 'visible' : '';
       }
     } else {
