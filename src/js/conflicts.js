@@ -3,6 +3,8 @@
     See LICENSE file in the project root for full license information.
 */
 
+import { deepCopyGrid } from "./state";
+
 let grid;
 
 const markConflicts = (cellSet) => {
@@ -55,7 +57,7 @@ const markConflictsForBox = (box) => {
 };
 
 const updateConflicts = (inputGrid) => {
-  grid = JSON.parse(JSON.stringify(inputGrid));
+  grid = deepCopyGrid(inputGrid);
 
   for (let i = 0; i < grid.length; i += 1) {
     if (grid[i].type === 'conflict') {
