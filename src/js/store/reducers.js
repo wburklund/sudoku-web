@@ -55,7 +55,7 @@ export const cellInput = (oldState, action) => {
 };
 
 export const cellHint = (oldState, index) => {
-  const gridString = oldState.grid.map(c => c.type === 'given' ? String(c.value) : '.').join('');
+  const gridString = oldState.grid.map(c => (c.type === 'given' ? c.value : '.')).join('');
   const solvedGrid = sudoku.solve(gridString).split('');
 
   const newState = deepCopyState(oldState);
@@ -63,4 +63,4 @@ export const cellHint = (oldState, index) => {
   newState.grid[index].value = solvedGrid[index];
 
   return updateGame(newState);
-}
+};

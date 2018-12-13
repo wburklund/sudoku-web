@@ -20,13 +20,17 @@ export const onResetClick = () => store.dispatch({ type: 'RESET_GAME' });
 export const onHintClick = (event) => {
   const button = event.target;
   wantsHint = !wantsHint;
-  wantsHint ? button.classList.add('enabled') : button.classList.remove('enabled');
+  if (wantsHint) {
+    button.classList.add('enabled');
+  } else {
+    button.classList.remove('enabled');
+  }
 };
 
 export const onNotesClick = (event) => {
   enableNotes = !enableNotes;
   event.target.classList.toggle('enabled');
-}
+};
 
 export const onInputKeydown = (event) => {
   event.preventDefault();
@@ -60,7 +64,7 @@ export const onInputKeydown = (event) => {
   }
 
   document.getElementsByClassName('cell-input')[newIndex].focus();
-}
+};
 
 export const onInputClick = (event) => {
   if (wantsHint) {
@@ -69,7 +73,7 @@ export const onInputClick = (event) => {
     document.getElementsByClassName('hintButton')[0].classList.remove('enabled');
     store.dispatch({ type: 'CELL_HINT', index });
   }
-}
+};
 
 export const onDifficultyChange = (event) => {
   const select = event.target;
@@ -78,4 +82,4 @@ export const onDifficultyChange = (event) => {
   } else {
     select.value = store.getState().difficulty;
   }
-}
+};
