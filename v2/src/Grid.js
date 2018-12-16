@@ -24,6 +24,7 @@ class Grid extends Component {
       <td 
         className={className}
         onClick={() => this.props.onClick(index)}
+        key={index}
       >
         {this.props.grid[index]}
       </td>
