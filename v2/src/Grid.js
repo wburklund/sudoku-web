@@ -20,7 +20,7 @@ class Grid extends Component {
     const className = classes.join(' ');
     const index = row * 9 + column;
 
-    return (<td className={className}>{index}</td>);
+    return (<td className={className}>{this.props.grid[index]}</td>);
   }
 
   renderGrid() {
