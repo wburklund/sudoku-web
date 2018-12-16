@@ -20,7 +20,14 @@ class Grid extends Component {
     const className = classes.join(' ');
     const index = row * 9 + column;
 
-    return (<td className={className} onClick={() => this.props.onClick(index)}>{this.props.grid[index]}</td>);
+    return (
+      <td 
+        className={className}
+        onClick={() => this.props.onClick(index)}
+      >
+        {this.props.grid[index]}
+      </td>
+    );
   }
 
   renderGrid() {
