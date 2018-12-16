@@ -17,6 +17,13 @@ class App extends Component {
     };
   }
 
+  handleCellClick(index) {
+    // Todo: add note support
+    let grid = this.state.grid.slice();
+    grid[index] = this.state.input.digit;
+    this.setState({ grid });
+  }
+
   handleDigitSelect(digit) {
     this.setState({ input: {...this.state.input, digit} });
   }
@@ -28,7 +35,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Grid grid={this.state.grid} />
+        <Grid grid={this.state.grid} onClick={(index) => this.handleCellClick(index)}/>
         <InputBar
           onDigitSelect={(digit) => this.handleDigitSelect(digit)}
           onNoteToggle={() => this.handleNoteToggle()}
