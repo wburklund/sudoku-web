@@ -5,6 +5,7 @@
 #sudokuGrid {
   border: 2px solid black;
   border-collapse: collapse;
+  margin: auto;
 }
 
 .cell {
