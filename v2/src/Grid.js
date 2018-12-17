@@ -5,6 +5,14 @@
 
 import React, { Component } from 'react';
 
+const Cell = (props) => (
+  <td className={props.className}
+    onClick={props.type === 'given' ? () => {} : props.onClick}
+  >
+    {props.value}
+  </td>
+);
+
 class Grid extends Component {
 
   renderCell(column, row) {
@@ -24,15 +32,15 @@ class Grid extends Component {
 
     const className = classes.join(' ');
     const index = row * 9 + column;
+    const {type, value} = this.props.grid[index];
 
     return (
-      <td 
-        className={className}
+      <Cell className={className}
         onClick={() => this.props.onClick(index)}
+        type={type}
+        value={value}
         key={index}
-      >
-        {this.props.grid[index].value}
-      </td>
+      />
     );
   }
 
