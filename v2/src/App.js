@@ -29,9 +29,6 @@ class App extends Component {
   handleCellClick(index) {
     // Todo: add note support
     let grid = this.state.grid.slice();
-    if (grid[index].type === 'given') {
-      return;
-    }
     if (this.state.controls.hint) {
       grid[index].value = lib.getHint(grid, index);
       this.setState({ controls: {...this.state.controls, hint: false} });
