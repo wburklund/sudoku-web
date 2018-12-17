@@ -7,12 +7,12 @@ import React, { Component } from 'react';
 import './App.css';
 import Grid from './Grid';
 import InputBar from './InputBar';
-import sudoku from './generator/sudoku';
+import * as lib from './lib';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    const newGame = sudoku.generate('medium').split('').map(v => v === '.' ? null : v);
+    const newGame = lib.newGame('medium');
     this.state = {
       grid: newGame,
       input: {
@@ -25,7 +25,10 @@ class App extends Component {
   handleCellClick(index) {
     // Todo: add note support
     let grid = this.state.grid.slice();
-    grid[index] = this.state.input.digit;
+    if (grid[index].type === 'given') {
+      return;
+    }
+    grid[index].value = this.state.input.digit;
     this.setState({ grid });
   }
 

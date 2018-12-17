@@ -31,7 +31,7 @@ class Grid extends Component {
         onClick={() => this.props.onClick(index)}
         key={index}
       >
-        {this.props.grid[index]}
+        {this.props.grid[index].value}
       </td>
     );
   }
