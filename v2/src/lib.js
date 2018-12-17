@@ -13,6 +13,15 @@ export const newGame = (difficulty) => {
     .map(value => value === '.' ? Object.assign({}, emptyCell) : {type: 'given', value});
 };
 
+export const getHint = (grid, index) => {
+  const gridString = grid.map(cell => cell.type === 'given' ? cell.value : '.')
+    .join('');
+
+  const solvedGrid = sudoku.solve(gridString);
+
+  return solvedGrid[index];
+}
+
 export const saveGame = (state) => {
   localStorage.setItem('sudokuGame', JSON.stringify(state));
 };
