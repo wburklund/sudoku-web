@@ -9,7 +9,13 @@ class InputBar extends Component {
     render() {
         return (
             <React.Fragment>
-                <button className={'cell'} onClick={() => this.props.onDigitSelect(null)}>E</button>
+                <button 
+                    className={'cell'}
+                    onClick={() => this.props.onDigitSelect(null)}
+                    style={{color: 'transparent', marginRight: '16px'}}
+                >
+                    E
+                </button>
                 <button className={'cell'} onClick={() => this.props.onDigitSelect(1)}>1</button>
                 <button className={'cell'} onClick={() => this.props.onDigitSelect(2)}>2</button>
                 <button className={'cell'} onClick={() => this.props.onDigitSelect(3)}>3</button>
@@ -19,7 +25,13 @@ class InputBar extends Component {
                 <button className={'cell'} onClick={() => this.props.onDigitSelect(7)}>7</button>
                 <button className={'cell'} onClick={() => this.props.onDigitSelect(8)}>8</button>
                 <button className={'cell'} onClick={() => this.props.onDigitSelect(9)}>9</button>
-                <button className={'cell'} onClick={this.props.onNoteToggle}>N</button>
+                <button 
+                    className={'cell'} 
+                    onClick={this.props.onNoteToggle}
+                    style={{marginLeft: '16px'}}
+                >
+                    N
+                </button>
             </React.Fragment>
         );
     }
