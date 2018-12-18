@@ -4,6 +4,7 @@
 */
 
 import React, { Component } from 'react';
+import styles from './Grid.module.css'
 
 const Cell = (props) => (
   <td className={props.className}
@@ -16,26 +17,11 @@ const Cell = (props) => (
 class Grid extends Component {
 
   renderCell(column, row) {
-    let classes = ['cell'];
-
-    if (column === 0) {
-      classes.push('cell-left');
-    } else if (column % 3 === 2) {
-      classes.push('cell-right');      
-    }
-
-    if (row === 0) {
-      classes.push('cell-top');
-    } else if (row % 3 === 2) {
-      classes.push('cell-bottom');
-    }
-
-    const className = classes.join(' ');
     const index = row * 9 + column;
     const {type, value} = this.props.grid[index];
 
     return (
-      <Cell className={className}
+      <Cell className={styles.cell}
         onClick={() => this.props.onClick(index)}
         type={type}
         value={value}
@@ -61,7 +47,7 @@ class Grid extends Component {
 
   render() {
     return (
-      <table id="sudokuGrid">
+      <table className={styles.grid}>
         <tbody>
           {this.renderGrid()}
         </tbody>
