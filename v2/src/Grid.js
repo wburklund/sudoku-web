@@ -4,10 +4,14 @@
 */
 
 import React, { Component } from 'react';
-import styles from './Grid.module.css'
+import styles from './Grid.module.css';
 
+/*
+  Cell functional component.
+*/
 const Cell = (props) => (
   <td className={props.className}
+    // Cells of type 'given' cannot be modified, so no click listener
     onClick={props.type === 'given' ? () => {} : props.onClick}
   >
     {props.value}
@@ -16,10 +20,14 @@ const Cell = (props) => (
 
 class Grid extends Component {
 
+  /*
+    Renders a single Cell.
+  */
   renderCell(column, row) {
-    const index = row * 9 + column;
+    const index = row * 9 + column; // Get the 1D cell index from row and column indices
     const {type, value} = this.props.grid[index];
 
+    // Todo: render notes instead if type === 'notes'
     return (
       <Cell className={styles.cell}
         onClick={() => this.props.onClick(index)}
@@ -30,15 +38,23 @@ class Grid extends Component {
     );
   }
 
+  /*
+    Renders the Sudoku Grid.
+  */
   renderGrid() {
+    // Create an array to hold the grid
     let grid = [];
 
-    for (let rowIndex = 0; rowIndex < 9; rowIndex++) {
+    // For each row,
+    for (let rowIndex = 0; rowIndex < 9; rowIndex++) { 
+      // Create an array to hold the cells in this row
       let cells = [];
+      // For each column,
       for (let columnIndex = 0; columnIndex < 9; columnIndex++) {
+        // Add a cell to the row
         cells.push(this.renderCell(columnIndex, rowIndex));
       }
-
+      // Add this row of cells to the grid
       grid.push(<tr key={rowIndex}>{cells}</tr>)
     }
 
