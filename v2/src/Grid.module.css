@@ -2,6 +2,7 @@
     border: .2rem solid black;
     border-collapse: collapse;
     margin: auto;
+    margin-bottom: 2rem;
 }
   
 .cell {
