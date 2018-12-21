@@ -1,0 +1,13 @@
+.notes {
+    width: 5rem;
+    height: 5rem;
+    box-sizing: border-box;
+}
+
+.notes p {
+    color: transparent;
+}
+
+.notes .visible {
+    color: navy;
+}
