@@ -32,7 +32,7 @@ class Grid extends Component {
       return (
         <Notes 
           onClick={() => this.props.onClick(index)}
-          values={value}
+          notes={value}
           key={index}
         />          
       )

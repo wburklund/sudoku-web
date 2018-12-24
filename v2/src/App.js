@@ -54,7 +54,7 @@ class App extends Component {
         grid[index].value = [];
       }
       // Now that we're sure the cell is a 'notes' cell, set or unset the appropriate note
-      grid[index].value[digit] = !grid[index].value[digit];
+      grid[index].value[digit - 1] = !grid[index].value[digit - 1];
     } else {
       // Otherwise, this was normal input. Set the cell's value with the selected digit.
       grid[index].type = 'normal';

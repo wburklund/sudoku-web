@@ -22,19 +22,19 @@ const Notes = (props) => (
         onClick={props.onClick}
     >
         <p>
-            <span className={props.values[1] ? styles.visible : ''}>1</span>
-            <span className={props.values[2] ? styles.visible : ''}>2</span>
-            <span className={props.values[3] ? styles.visible : ''}>3</span>
+            <span className={props.notes[0] ? styles.visible : ''}>1</span>
+            <span className={props.notes[1] ? styles.visible : ''}>2</span>
+            <span className={props.notes[2] ? styles.visible : ''}>3</span>
         </p>
         <p>
-            <span className={props.values[4] ? styles.visible : ''}>4</span>
-            <span className={props.values[5] ? styles.visible : ''}>5</span>
-            <span className={props.values[6] ? styles.visible : ''}>6</span>
+            <span className={props.notes[3] ? styles.visible : ''}>4</span>
+            <span className={props.notes[4] ? styles.visible : ''}>5</span>
+            <span className={props.notes[5] ? styles.visible : ''}>6</span>
         </p>
         <p>
-            <span className={props.values[7] ? styles.visible : ''}>7</span>
-            <span className={props.values[8] ? styles.visible : ''}>8</span>
-            <span className={props.values[9] ? styles.visible : ''}>9</span>
+            <span className={props.notes[6] ? styles.visible : ''}>7</span>
+            <span className={props.notes[7] ? styles.visible : ''}>8</span>
+            <span className={props.notes[8] ? styles.visible : ''}>9</span>
         </p>
     </td>
 );
