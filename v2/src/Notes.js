@@ -17,7 +17,7 @@ import styles from './Notes.module.css';
     If the complexity of this component increases, it will need to be
     refactored using nested loops.
 */
-const Notes = (props) => {
+const Notes = (props) => (
     <td className={styles.notes}
         onClick={props.onClick}
     >
@@ -37,4 +37,6 @@ const Notes = (props) => {
             <span className={props.values[9] ? styles.visible : ''}>9</span>
         </p>
     </td>
-}
+);
+
+export default Notes;

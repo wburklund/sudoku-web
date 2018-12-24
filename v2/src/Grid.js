@@ -5,6 +5,7 @@
 
 import React, { Component } from 'react';
 import styles from './Grid.module.css';
+import Notes from './Notes';
 
 /*
   Cell functional component.
@@ -27,7 +28,15 @@ class Grid extends Component {
     const index = row * 9 + column; // Get the 1D cell index from row and column indices
     const {type, value} = this.props.grid[index];
 
-    // Todo: render notes instead if type === 'notes'
+    if (type === 'notes') {
+      return (
+        <Notes 
+          onClick={() => this.props.onClick(index)}
+          values={value}
+          key={index}
+        />          
+      )
+    }
     return (
       <Cell className={styles.cell}
         onClick={() => this.props.onClick(index)}

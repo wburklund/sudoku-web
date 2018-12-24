@@ -9,6 +9,7 @@ import ControlBar from './ControlBar';
 import Grid from './Grid';
 import InputBar from './InputBar';
 import * as lib from './lib';
+import { deepCopyGrid } from './util';
 
 class App extends Component {
   constructor(props) {
@@ -33,20 +34,33 @@ class App extends Component {
     and handles it appropriately. Otherwise, enters selected digit as cell's value.
   */
   handleCellClick(index) {
-    // Todo: add note support
-
-    // Copy the grid; will need a helper function for deep copy when notes are added
-    let grid = this.state.grid.slice();
+    let grid = deepCopyGrid(this.state.grid);
+    const { digit, noteEnable } = this.state.input;
 
     if (this.state.controls.hint) {
       // If the player has requested a hint, set the cell's value with the correct digit
       grid[index].value = lib.getHint(grid, index);
       // Disable hints until the player requests another
       this.setState({ controls: {...this.state.controls, hint: false} });
+    } else if (noteEnable) {
+      // The player wants to input a note; first check whether the cell is already type 'notes'
+      if (grid[index].type !== 'notes') {
+        // Do nothing if there is already a digit in the cell
+        if (grid[index].value !== null) {
+          return;
+        }
+        // Otherwise, make this a 'notes' cell
+        grid[index].type = 'notes';
+        grid[index].value = [];
+      }
+      // Now that we're sure the cell is a 'notes' cell, set or unset the appropriate note
+      grid[index].value[digit] = !grid[index].value[digit];
     } else {
       // Otherwise, this was normal input. Set the cell's value with the selected digit.
-      grid[index].value = this.state.input.digit;
+      grid[index].type = 'normal';
+      grid[index].value = digit;
     }
+    
     // Todo: conflict detection, saving, etc here
     // Update grid
     this.setState({ grid });
@@ -61,7 +75,7 @@ class App extends Component {
   }
 
   handleNoteToggle() {
-    this.setState({ input: {...this.state.input, noteEnable: !this.state.noteEnable} });
+    this.setState({ input: {...this.state.input, noteEnable: !this.state.input.noteEnable} });
   }
 
   render() {
