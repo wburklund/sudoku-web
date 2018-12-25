@@ -3,8 +3,6 @@
     See LICENSE file in the project root for full license information.
 */
 
-import sudoku from './generator/sudoku';
-
 const emptyCell = {type: 'normal', value: null};
 
 /*
@@ -34,16 +32,18 @@ export const newGame = (givenCells) => {
   and the digit at the requested index is returned.
 */
 export const getHint = (grid, index) => {
-  // Convert our grid back to the generator string format,
-  // throwing out everything that wasn't given by the generator
-  const gridString = grid.map(cell => cell.type === 'given' ? cell.value : '.')
-    .join('');
+  // Stub until supported in new generator
+  return '0';
+  // // Convert our grid back to the generator string format,
+  // // throwing out everything that wasn't given by the generator
+  // const gridString = grid.map(cell => cell.type === 'given' ? cell.value : '.')
+  //   .join('');
 
-  // Solve the grid
-  const solvedGrid = sudoku.solve(gridString);
+  // // Solve the grid
+  // const solvedGrid = sudoku.solve(gridString);
 
-  // Return the digit at the given index
-  return solvedGrid[index];
+  // // Return the digit at the given index
+  // return solvedGrid[index];
 }
 
 /*
