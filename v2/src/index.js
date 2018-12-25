@@ -8,4 +8,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// Render the App once the WebAssembly module is initialized
+// Need to disable eslint for this line, because Module only exists at runtime
+// eslint-disable-next-line
+Module.onRuntimeInitialized = () => ReactDOM.render(<App />, document.getElementById('root'));

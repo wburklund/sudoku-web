@@ -8,20 +8,24 @@ import sudoku from './generator/sudoku';
 const emptyCell = {type: 'normal', value: null};
 
 /*
-  Generate a new Sudoku puzzle with the given difficulty.
+  Generate a new Sudoku puzzle with the desired number of cells filled in.
 
-  The generator returns a puzzle as an 81-character string with either a digit
-  or a period to represent an empty cell. (example: "3..4.6.21" ...)
+  The generator returns a puzzle as a UInt8Array that contains either the digit
+  or a zero for an empty cell.
   All digits in a new game are made into "given" cells that cannot be modified.
-  Empty cells are "normal" and can be either given a digit or given
-  player-entered "notes" which record possible digits in a cell.
+  Empty cells are "normal" and can be either filled in with a digit or given
+  player-entered "notes" which help keep track of possible digits in a cell.
 */
-export const newGame = (difficulty) => {
-  // Generator string -> array of characters -> array of cells
-  return sudoku.generate(difficulty) 
-    .split('')
-    .map(value => value === '.' ? {...emptyCell} : {type: 'given', value});
-};
+export const newGame = (givenCells) => {
+  // Module exists only at runtime; disable eslint
+  // eslint-disable-next-line
+  const puzzle = Module.generate(givenCells);
+
+  // puzzle is a Uint8Array, so call Array.prototype.map explicitly
+  return Array.prototype.map.call(puzzle, value => {
+    return value ? {type: 'given', value: '' + value} : {...emptyCell};
+  });
+}
 
 /*
   Get the correct digit for the requested cell.

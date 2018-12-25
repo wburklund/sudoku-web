@@ -14,7 +14,7 @@ import { deepCopyGrid } from './util';
 class App extends Component {
   constructor(props) {
     super(props);
-    const grid = lib.newGame('medium');  // Todo: replace with "load or generate" helper
+    const grid = lib.newGame(53);  // Todo: replace with "load or generate" helper
     this.state = {
       controls: {         // ControlBar selections
         hint: false,        // Whether the player wants a hint
