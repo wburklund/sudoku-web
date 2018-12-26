@@ -68,3 +68,10 @@ export const saveGame = (state) => {
 export const loadGame = () => {
   return JSON.parse(localStorage.getItem('sudokuGame'));
 };
+
+/*
+  Load game or create new game. Runs on startup.
+*/
+export const loadOrCreateGame = () => {
+  return loadGame() || newGame(53);
+}
