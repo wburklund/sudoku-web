@@ -78,10 +78,18 @@ class App extends Component {
     this.setState({ input: {...this.state.input, noteEnable: !this.state.input.noteEnable} });
   }
 
+  handleResetClick() {
+    const resetGrid = lib.resetGame(this.state.grid);
+    this.setState({ grid: resetGrid });
+  }
+
   render() {
     return (
       <div className="App">
-        <ControlBar onHintClick={() => this.handleHintClick()} />
+        <ControlBar
+          onHintClick={() => this.handleHintClick()} 
+          onResetClick={() => this.handleResetClick()}
+        />
         <Grid grid={this.state.grid} onClick={(index) => this.handleCellClick(index)}/>
         <InputBar
           onDigitSelect={(digit) => this.handleDigitSelect(digit)}

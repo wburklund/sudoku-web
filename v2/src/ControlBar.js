@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 class ControlBar extends Component {
     render() {
         return (
-            <button onClick={() => this.props.onHintClick()}>Hint</button>
+            <React.Fragment>
+                <button onClick={() => this.props.onHintClick()}>Hint</button>
+                <button onClick={() => this.props.onResetClick()}>Reset</button>
+            </React.Fragment>
         );
     }
 }

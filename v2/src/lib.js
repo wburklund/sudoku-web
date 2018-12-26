@@ -56,6 +56,13 @@ export const getHint = (grid, index) => {
 }
 
 /*
+  Reset game by removing all non-given cells.
+*/
+export const resetGame = (grid) => {
+  return grid.map(cell => cell.type === 'given' ? cell : emptyCell);
+}
+
+/*
   Save the game to localStorage.
 */
 export const saveGame = (state) => {
