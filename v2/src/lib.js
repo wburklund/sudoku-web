@@ -3,7 +3,18 @@
     See LICENSE file in the project root for full license information.
 */
 
+// Sudoku generator module
+let Module;
+
+// Default value for a cell whose value is not given by the generator
 const emptyCell = {type: 'normal', value: null};
+
+/*
+  Bind the Sudoku generator to a local variable. Runs once at startup.
+*/
+export const bindModule = (sudokuGenerator) => {
+  Module = sudokuGenerator;
+}
 
 /*
   Generate a new Sudoku puzzle with the desired number of cells filled in.
@@ -15,8 +26,6 @@ const emptyCell = {type: 'normal', value: null};
   player-entered "notes" which help keep track of possible digits in a cell.
 */
 export const newGame = (givenCells) => {
-  // Module exists only at runtime; disable eslint
-  // eslint-disable-next-line
   const puzzle = Module.generate(givenCells);
 
   // puzzle is a Uint8Array, so call Array.prototype.map explicitly

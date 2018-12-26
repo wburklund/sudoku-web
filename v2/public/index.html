@@ -21,8 +21,9 @@
     -->
 
     <!-- Emscripten WebAssembly module loader
-      creates an object called "Module" that, among other things, contains the exported functions
-      and allows other code to set a callback for when WebAssembly is fully initialized -->
+      Creates a thenable function that, after WASM runtime initialization is complete, returns
+      an object containing the functions exported by the Sudoku generator.
+    -->
     <script type="text/javascript" src="generator/sudokuGen.js"></script>
     <title>React App</title>
   </head>
