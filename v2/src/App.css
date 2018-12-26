@@ -1,3 +1,11 @@
 .App {
   text-align: center;
 }
+
+.heading {
+  margin: 1rem auto 0 auto;
+  width: 45rem;
+  background-color: black;
+  color: white;
+  font-size: 5rem;
+}

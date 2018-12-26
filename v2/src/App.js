@@ -86,6 +86,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <header className="heading">
+          Sudoku
+        </header>
         <ControlBar
           onHintClick={() => this.handleHintClick()} 
           onResetClick={() => this.handleResetClick()}
