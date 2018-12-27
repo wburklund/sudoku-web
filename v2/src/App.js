@@ -10,6 +10,7 @@ import Grid from './Grid';
 import InputBar from './InputBar';
 import * as lib from './lib';
 import { deepCopyGrid } from './util';
+import updateConflicts from './conflicts';
 
 class App extends Component {
   constructor(props) {
@@ -61,8 +62,9 @@ class App extends Component {
       grid[index].value = digit;
     }
     
-    // Todo: conflict detection, etc here
+    grid = updateConflicts(grid);
     lib.saveGame(grid);
+    
     // Update grid
     this.setState({ grid });
   }
