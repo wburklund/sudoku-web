@@ -61,7 +61,8 @@ class App extends Component {
       grid[index].value = digit;
     }
     
-    // Todo: conflict detection, saving, etc here
+    // Todo: conflict detection, etc here
+    lib.saveGame(grid);
     // Update grid
     this.setState({ grid });
   }
