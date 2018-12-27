@@ -12,6 +12,8 @@ export const deepCopyGrid = (oldGrid) => {
         const value = Array.isArray(oldGrid[i].value) ? [...oldGrid[i].value] : oldGrid[i].value;
         newGrid[i] = { type, value };
     }
+    // Copy non-enumerable properties
+    newGrid[Symbol.for('difficulty')] = oldGrid[Symbol.for('difficulty')];
     return newGrid;
 }
 

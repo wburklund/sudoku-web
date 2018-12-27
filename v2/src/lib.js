@@ -29,9 +29,14 @@ export const newGame = (givenCells) => {
   const puzzle = Module.generate(givenCells);
 
   // puzzle is a Uint8Array, so call Array.prototype.map explicitly
-  return Array.prototype.map.call(puzzle, value => {
+  let grid = Array.prototype.map.call(puzzle, value => {
     return value ? {type: 'given', value: '' + value} : {...emptyCell};
   });
+
+  // Set "difficulty" as a non-enumerable property
+  grid[Symbol.for('difficulty')] = givenCells;
+
+  return grid;
 }
 
 /*
