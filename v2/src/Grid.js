@@ -37,8 +37,12 @@ class Grid extends Component {
         />          
       )
     }
+
+    // If cell type is conflict, add conflict class
+    const cellClass = styles.cell + (type === 'conflict' ? ' ' + styles.conflict : '');
+
     return (
-      <Cell className={styles.cell}
+      <Cell className={cellClass}
         onClick={() => this.props.onClick(index)}
         type={type}
         value={value}

@@ -13,6 +13,10 @@
     font-size: 3.5rem;
 }
 
+.conflict {
+    color: red;
+}
+
 .grid tr:nth-of-type(3),
 .grid tr:nth-of-type(6) {
     border-bottom: .2rem solid black;
