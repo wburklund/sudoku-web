@@ -38,8 +38,8 @@ class Grid extends Component {
       )
     }
 
-    // If cell type is conflict, add conflict class
-    const cellClass = styles.cell + (type === 'conflict' ? ' ' + styles.conflict : '');
+    // Use cell type to determine CSS class
+    const cellClass = styles.cell + ' ' + styles[type];
 
     return (
       <Cell className={cellClass}
