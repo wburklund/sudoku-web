@@ -30,7 +30,7 @@ function *cellSets() {
     // Yield all boxes (top left -> top middle -> top right -> middle left -> ...)
     for (let box = 0; box < 9; box++) {
         let startCol = (box % 3) * 3;
-        let startRow = Math.floor(box / 3);
+        let startRow = 3 * Math.floor(box / 3);
 
         let set = [];
         for (let row = startRow; row < startRow + 3; row++) {
@@ -56,7 +56,7 @@ const updateConflicts = (grid) => {
         const conflictDigits = '123456789'
             .split('')
             .filter(d => cellValues.indexOf(d) !== cellValues.lastIndexOf(d));
-        
+
         // Run through the set, and check whether each cell's value occurs in the array.
         // If so, add its index to the Set of conflicting cells.
         for (let index of set) {
