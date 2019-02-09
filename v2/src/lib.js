@@ -24,9 +24,16 @@ export const bindModule = (sudokuGenerator) => {
   All digits in a new game are made into "given" cells that cannot be modified.
   Empty cells are "normal" and can be either filled in with a digit or given
   player-entered "notes" which help keep track of possible digits in a cell.
+
+  A full solution is included in the array after the puzzle, starting at index 81.
 */
 export const newGame = (givenCells) => {
-  const puzzle = Module.generate(givenCells);
+  const fullPuzzle = Module.generate(givenCells);
+
+  const puzzle = fullPuzzle.slice(0, 81)
+  const solution = fullPuzzle.slice(81)
+
+  localStorage.setItem('itsjustagame', JSON.stringify(solution))
 
   // puzzle is a Uint8Array, so call Array.prototype.map explicitly
   let grid = Array.prototype.map.call(puzzle, value => {
