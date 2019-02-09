@@ -40,7 +40,9 @@ class App extends Component {
 
     if (this.state.controls.hint) {
       // If the player has requested a hint, set the cell's value with the correct digit
-      grid[index].value = lib.getHint(grid, index);
+      grid[index].value = lib.getHint(index);
+      grid[index].type = 'given';
+      
       // Disable hints until the player requests another
       this.setState({ controls: {...this.state.controls, hint: false} });
     } else if (noteEnable) {
