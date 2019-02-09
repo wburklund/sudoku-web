@@ -3,18 +3,8 @@
     See LICENSE file in the project root for full license information.
 */
 
-// Sudoku generator module
-let Module;
-
 // Default value for a cell whose value is not given by the generator
 const emptyCell = {type: 'normal', value: null};
-
-/*
-  Bind the Sudoku generator to a local variable. Runs once at startup.
-*/
-export const bindModule = (sudokuGenerator) => {
-  Module = sudokuGenerator;
-}
 
 /*
   Generate a new Sudoku puzzle with the desired number of cells filled in.
@@ -28,6 +18,8 @@ export const bindModule = (sudokuGenerator) => {
   A full solution is included in the array after the puzzle, starting at index 81.
 */
 export const newGame = (givenCells) => {
+  // Disable ESLint, as Module does not exist until runtime
+  // eslint-disable-next-line
   const fullPuzzle = Module.generate(givenCells);
 
   const puzzle = fullPuzzle.slice(0, 81)
@@ -53,8 +45,6 @@ export const getHint = (index) => {
   const solution = JSON.parse(localStorage.getItem('itsjustagame'))
   return solution[index]
 }
-
-window.getHint = getHint
 
 /*
   Reset game by removing all non-given cells.

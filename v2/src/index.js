@@ -7,13 +7,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { bindModule } from './lib';
 
 // Once the WebAssembly Sudoku generator module is initialized,
 // Bind the module, then start the app
 // Need to disable eslint for this line, because SudokuGen only exists at runtime
 // eslint-disable-next-line
 SudokuGen().then((Module) => {
-    bindModule(Module);
+    window.Module = Module;
     ReactDOM.render(<App />, document.getElementById('root'));
 });
