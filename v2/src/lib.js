@@ -47,25 +47,14 @@ export const newGame = (givenCells) => {
 }
 
 /*
-  Get the correct digit for the requested cell.
-
-  The generator solves the entire puzzle,
-  and the digit at the requested index is returned.
+  Get the correct digit for the requested cell by looking at the stored solution.
 */
-export const getHint = (grid, index) => {
-  // Stub until supported in new generator
-  return '0';
-  // // Convert our grid back to the generator string format,
-  // // throwing out everything that wasn't given by the generator
-  // const gridString = grid.map(cell => cell.type === 'given' ? cell.value : '.')
-  //   .join('');
-
-  // // Solve the grid
-  // const solvedGrid = sudoku.solve(gridString);
-
-  // // Return the digit at the given index
-  // return solvedGrid[index];
+export const getHint = (index) => {
+  const solution = JSON.parse(localStorage.getItem('itsjustagame'))
+  return solution[index]
 }
+
+window.getHint = getHint
 
 /*
   Reset game by removing all non-given cells.
