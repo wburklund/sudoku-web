@@ -42,7 +42,7 @@ class App extends Component {
       // If the player has requested a hint, set the cell's value with the correct digit
       grid[index].value = lib.getHint(index);
       grid[index].type = 'given';
-      
+
       // Disable hints until the player requests another
       this.setState({ controls: {...this.state.controls, hint: false} });
     } else if (noteEnable) {
@@ -71,6 +71,10 @@ class App extends Component {
     this.setState({ grid });
   }
 
+  handleDifficultyChange(difficulty) {
+    this.setState({ grid: lib.newGame(difficulty)})
+  }
+
   handleDigitSelect(digit) {
     this.setState({ input: {...this.state.input, digit} });
   }
@@ -95,6 +99,7 @@ class App extends Component {
           Sudoku
         </header>
         <ControlBar
+          onDifficultyChange={(difficulty) => this.handleDifficultyChange(difficulty)}
           onHintClick={() => this.handleHintClick()} 
           onResetClick={() => this.handleResetClick()}
         />
