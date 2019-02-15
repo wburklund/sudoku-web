@@ -13,7 +13,7 @@ export const deepCopyGrid = (oldGrid) => {
         newGrid[i] = { type, value };
     }
     // Copy non-enumerable properties
-    newGrid[Symbol.for('difficulty')] = oldGrid[Symbol.for('difficulty')];
+    newGrid.difficulty = oldGrid.difficulty;
     return newGrid;
 }
 
