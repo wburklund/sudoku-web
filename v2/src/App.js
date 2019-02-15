@@ -99,6 +99,7 @@ class App extends Component {
           Sudoku
         </header>
         <ControlBar
+          difficulty = {this.state.grid.difficulty}
           onDifficultyChange={(difficulty) => this.handleDifficultyChange(difficulty)}
           onHintClick={() => this.handleHintClick()} 
           onResetClick={() => this.handleResetClick()}
