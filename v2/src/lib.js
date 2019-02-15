@@ -33,7 +33,7 @@ export const newGame = (givenCells) => {
   });
 
   // Set "difficulty" as a non-enumerable property
-  grid[Symbol.for('difficulty')] = givenCells;
+  grid.difficulty = givenCells;
 
   return grid;
 }
@@ -56,15 +56,25 @@ export const resetGame = (grid) => {
 /*
   Save the game to localStorage.
 */
-export const saveGame = (state) => {
-  localStorage.setItem('sudokuGame', JSON.stringify(state));
+export const saveGame = (grid) => {
+  localStorage.setItem('sudokuGrid', JSON.stringify(grid));
+
+  // difficulty isn't enumerable, so store it separately
+  localStorage.setItem('sudokuDifficulty', JSON.stringify(grid.difficulty));
 };
 
 /*
   Load the game from localStorage.
 */
 export const loadGame = () => {
-  return JSON.parse(localStorage.getItem('sudokuGame'));
+  let grid = JSON.parse(localStorage.getItem('sudokuGrid'));
+
+  if (!grid) {
+    return null;
+  }
+
+  grid.difficulty = JSON.parse(localStorage.getItem('sudokuDifficulty'));
+  return grid;
 };
 
 /*
