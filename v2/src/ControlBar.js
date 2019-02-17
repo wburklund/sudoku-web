@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import styles from './ControlBar.module.css';
 
 class ControlBar extends Component {
     render() {
         return (
             <React.Fragment>
-                <select 
+                <select
+                    className={styles.difficultySelect}
                     onChange={(event) => this.props.onDifficultyChange(Number(event.target.value))}
                     value={this.props.difficulty}
                 >
